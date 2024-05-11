@@ -1,0 +1,30 @@
+.container-header {
+  display: flex;
+  align-items: center;
+  height: 6vw;
+}
+
+.image-header {
+  height: 5vw;
+  width: 5vw;
+  margin-left: 20vw; /* Khoảng cách 20px với phần tử bên phải */
+  margin-right: 5vw; 
+
+}
+
+.text-container-header {
+   /* Chia tỷ lệ dựa trên khoảng trống còn lại */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.first-line-header,
+.second-line-header {
+  text-align: center;
+  margin-bottom: 0.5vw;
+  margin-top: 0.5vw;
+  font-size: 1.5vw;
+}
+
+
