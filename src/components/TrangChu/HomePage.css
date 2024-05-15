@@ -1,0 +1,247 @@
+.content-wrapper {
+    /* display: flex; */
+    justify-content: center;
+}
+
+
+.content-2 {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.content-1 {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+.ad-img-wrapper {
+    width: 80%;
+    text-align: center;
+    margin-top: 8px;    
+}
+.content-right {
+    width: 20%;
+    margin-top: 8px;
+    padding-right: 2%;
+}
+.feature-list {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.feature-list h2 {
+    margin-top: 0;
+    background-color: red; /* Màu đỏ cho tiêu đề */
+    color: white; /* Màu chữ trắng cho tiêu đề */
+    padding: 10px; /* Khoảng cách giữa tiêu đề và nội dung */
+    border-radius: 5px 5px 0 0; /* Bo tròn góc trên của tiêu đề */
+    text-align: center;
+}
+.feature-list ul {
+    list-style-type: none;
+    padding-left: 2%;
+}
+
+.feature-list li {
+    padding: 8px 0;
+    cursor: pointer; /* Đổi con trỏ khi di chuột qua mỗi mục trong danh sách */
+}
+
+.feature-list li:hover {
+    background-color: #f0f0f0; /* Màu nền khi hover */
+}
+.ad-img {
+    border-radius: 8px;
+    width: 90%;
+    box-sizing: border-box;
+    height: auto;
+    /* padding-left: 1%; */
+}
+
+* {
+    box-sizing: border-box
+}
+
+img {
+    vertical-align: middle;
+    height: 460px;
+}
+
+.more-info .info-title {
+    text-align: center;
+}
+
+.info-title {
+    font-weight: 300;
+}
+
+.info-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.info-option+.info-option {
+    margin-left: 100px;
+}
+
+.info-item:first-child {
+    margin-bottom: 30px;
+}
+
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.bottom-content {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 8px;
+}
+
+
+.responsive-img {
+    max-width: 90%;
+    height: auto;
+    position: relative;
+}
+.responsive-logo {
+    max-width: 100%;
+    height: auto;
+    /* position: relative; */
+}
+
+.sponsorsImg {
+    width: 90%;
+    height: 90%;
+    padding: 10px;
+}
+
+.stateIndex.sponsors {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.map-wrapper {
+    width: 50%;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.map {
+    width: 70%;
+    height: 360px;
+    border: 0;
+    border-radius: 20px;
+}
+
+.logo-meaning-wrapper {
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.logo-meaning {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-meaning-title {
+    font-size: 24px;
+    line-height: 25px;
+    text-transform: uppercase;
+    color: #d30000;
+    font-weight: 600;
+}
+
+.logo-meaning-img {
+    width: 72px;
+    height: 92px;
+}
+
+.text-meaning {
+    background-color: #fde0e0;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.text-meaning-title {
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.text-meaning-content {
+    margin: 0;
+}
+
+.text-meaning-content+.text-meaning-content {
+    margin-bottom: 16px;
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+
+    .prev,
+    .next,
+    .text {
+        font-size: 11px
+    }
+}
+
+.slider-container {
+    max-width: 600px;
+    margin: 0 auto;
+    transition: transform 0.5s ease;
+}
+
+.slider {
+    display: flex;
+    overflow-x: hidden;
+}
+
+.slide {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+.slider img {
+    width: 100%;
+    height: auto;
+}
+
+.slider-controls {
+    margin-top: 10px;
+}
+
+.slider-controls button {
+    margin-right: 10px;
+}
+
+.header-name{
+    position: relative;
+    color: white;
+    text-align: center;
+    padding-left: 25%;
+}
+.login-button:hover {
+    background-color: #c71111; /* Thay đổi màu nền của nút khi di chuột qua */
+}

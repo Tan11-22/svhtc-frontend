@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
-import Header from './components/Header/Header';
-import NavBarMenu from './components/NavBarMenu/NavBarMenu.jsx' ;
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import HocPhi from './components/HocPhi/HocPhi';
+import HomePage from './components/TrangChu/HomePage';
+import Return from './components/HocPhi/ReturnPayment/Return';
+import XemDiem from './components/XemDiem/XemDiem';
+import ThongTinCaNhan from './components/ThongTinCaNhan/ThongTinCaNhan';
 
 function App() {
-  const menuItems = [
-    { name: "Trang chủ", link: "#" },
-    { name: "Sinh viên", link: "#" },
-    { name: "Giảng viên", link: "#" },
-    { name: "Phòng giáo vụ", link: "#" },
-    { name: "Đăng kí môn học", link: "#" },
-    { name: "Học phí", link: "#" }
-  ];
   return (
-    
-    <div >
-      <Header></Header>
-      <NavBarMenu menuItems={menuItems}></NavBarMenu>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/hoc-phi" element={<HocPhi />} />
+        <Route path="*" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/xem-diem" element={<XemDiem />} />
+        <Route path="/return-payment" element={<Return />} />
+        <Route path="/thong-tin-ca-nhan" element={<ThongTinCaNhan/>} />
+      </Routes>
+    </Router>
   );
 }
 
