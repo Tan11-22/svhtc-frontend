@@ -10,15 +10,11 @@
 }
 
 .content-1 {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
     width: 100%;
     margin-top: 20px;
 }
 .ad-img-wrapper {
-    width: 80%;
+    width: 100%;
     text-align: center;
     margin-top: 8px;    
 }

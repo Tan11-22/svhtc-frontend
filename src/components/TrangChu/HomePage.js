@@ -1,17 +1,8 @@
 import Header from '../Header/Header';
 import './HomePage.css'
-import {useNavigate } from 'react-router-dom';
+
 export default function HomePage() {
-    const navigate = useNavigate();
-    const handleClickHP = () => {
-        navigate("/hoc-phi");
-    }
-    const handleClickDKMH = () => {
-        navigate("/dang-ki-mon-hoc");
-    }
-    const handleClickTTCN = () => {
-        navigate("/thong-tin-ca-nhan");
-    }
+    
     return (
         <div className="content-wrapper">
             <Header/>
@@ -19,18 +10,6 @@ export default function HomePage() {
                 <div class="ad-img-wrapper">
                     <img class='responsive-img' src="https://portal.ptit.edu.vn/wp-content/uploads/2021/11/banner-web-triet-ly-giao-d%E1%BB%A5c.jpg" alt="Slide 2" />
                     <img src="https://portal.ptit.edu.vn/wp-content/uploads/2022/08/baner_tuyendung.jpg" class="ad-img" alt='portal' style={{ paddingTop: '10px' }} />
-                </div>
-                <div class="content-right">
-                    <div class="feature-list">
-                        <h2>TÍNH NĂNG</h2>
-                        <ul>
-                            <li onClick={handleClickTTCN}> Thông tin cá nhân </li>
-                            <li onClick={handleClickDKMH}> Đăng kí môn học </li>
-                            <li onClick={handleClickHP}> Thanh toán học phí</li>
-                            <li onClick={handleClickHP}>Nhập điểm</li>
-                            <li onClick={handleClickHP}>Xem điểm</li>
-                        </ul>
-                    </div>
                 </div>
             </div>
             <div className='content-2'>
