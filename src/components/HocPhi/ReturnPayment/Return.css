@@ -1,0 +1,27 @@
+.content-wrapper-return {
+    display: flex;
+    justify-content: center;
+}
+
+.content-return-title {
+    width: 100%;
+    margin-top: 10%;
+    padding-left: 40%;
+}
+.content-return-content {
+    width: 100%;
+    margin-top: 20px;
+    padding-left: 30%;
+}
+.btn-return-trang-chu{
+    margin-right: 2%;
+    margin-left: auto; /* Đặt nút đăng nhập ở cuối dòng */
+    padding: 10px 20px; /* Định dạng kích thước của nút */
+    background-color: #a50d27; /* Màu nền của nút */
+    color: #ffffff; /* Màu văn bản của nút */
+    border: none; /* Loại bỏ viền của nút */
+    border-radius: 5px; /* Bo tròn góc của nút */
+    cursor: pointer; /* Biến con trỏ thành dấu nhấn khi di chuột qua nút */
+    font-weight: bold;
+    white-space: nowrap;
+}
