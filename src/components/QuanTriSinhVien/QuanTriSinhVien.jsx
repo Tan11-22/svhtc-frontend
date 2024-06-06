@@ -6,21 +6,11 @@ import '../Form036/Modal/Modal.css'
 import userIcon from '../../assets/user.png';
 import Header from '../Header/Header.jsx';
 import NavBarMenu from '../NavBarMenu/NavBarMenu.jsx'
+import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
 import { handleOpenDialog, handleCloseDialog, previewImage ,useForm,formatDate } from '../Form036/Modal/Modal.js';
 import { getDanhSachLop ,getStudentsByClassId,addNewStudent,updateStudent,DeleteStudent,fetchStudentImage} from '../API036/apiThongTin.js';
 function QuanTriSinhVien() {
-  const menuItems = [
-    { name: "Trang chủ", link: "/" },
-    { name: "Sinh viên", link: "/sinh-vien" },
-    { name: "Giảng viên", link: "/giang-vien" },
-    { name: "Phòng giáo vụ", link: "/phong-giao-vu" },
-    { name: "Đăng kí môn học", link: "/dang-ki" },
-    { name: "Lớp tín chỉ", link: "/lop-tin-chi" },
-    { name: "Học phí", link: "/hoc-phi" }
-  ];
-  const rightMenu = [
-    { link: "#", icon: userIcon, alt: "iconthongtincanhan" }
-  ];
+  
     const [lopList, setLopList] = useState([]);
     const [selectedLop, setSelectedLop] = useState('');
     const [studentList, setStudentList] = useState([]);
@@ -139,7 +129,7 @@ function QuanTriSinhVien() {
             ho: '',
             ten: '',
             ngaysinh: '',
-            phai: '',
+            phai: false,
             diachi: '',
             malop: selectedLop,
             danghihoc:false,
@@ -181,7 +171,7 @@ function QuanTriSinhVien() {
       const  AcceptDeleteButtonClick = async () => {
         try {
             
-                const dataToSave = String(values.masv);
+                const dataToSave = String(values.masv.trim());
                 await DeleteStudent(dataToSave); // Gọi API cập nhật           
                 resetForm();
                 handleCloseDialog('deleteDialog');
@@ -214,7 +204,7 @@ function QuanTriSinhVien() {
   return (
     <div>
          <Header/>
-         <NavBarMenu menuItems={menuItems} rightMenu={rightMenu} />
+         <NavBarMenu menuItems={menuItemsGV} />
       <div className='cartFull-036'>
         <div className="cartBackground-036">
             <div className="titlepage"><p>Danh Sách Sinh Viên</p></div>
@@ -267,7 +257,7 @@ function QuanTriSinhVien() {
                            <td>{student.masv.trim()}</td>
                            <td>{`${student.ho} ${student.ten}`}</td>
                            <td>{formatDate(student.ngaysinh)}</td>
-                           <td>{student.phai ? 'Nam' : 'Nữ'}</td>
+                           <td>{student.phai ? 'Nữ' : 'Nam'}</td>
                            <td>{student.email}</td>
                            <td>{student.diachi}</td>
                            <td>{student.sdt}</td>

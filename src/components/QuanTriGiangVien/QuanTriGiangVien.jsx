@@ -8,19 +8,9 @@ import '../Form036/Modal/Modal.css';
 import Header from '../Header/Header.jsx';
 import NavBarMenu from '../NavBarMenu/NavBarMenu.jsx'
 import { handleOpenDialog, handleCloseDialog, previewImage ,useForm } from '../Form036/Modal/Modal.js';
+import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
 function QuanTriGiangVien() {
-  const menuItems = [
-    { name: "Trang chủ", link: "/" },
-    { name: "Sinh viên", link: "/sinh-vien" },
-    { name: "Giảng viên", link: "/giang-vien" },
-    { name: "Phòng giáo vụ", link: "/phong-giao-vu" },
-    { name: "Đăng kí môn học", link: "/dang-ki" },
-    { name: "Lớp tín chỉ", link: "/lop-tin-chi" },
-    { name: "Học phí", link: "/hoc-phi" }
-  ];
-  const rightMenu = [
-    { link: "#", icon: userIcon, alt: "iconthongtincanhan" }
-  ];
+  
   const [khoaList, setKhoaList] = useState([]);
   const [selectedKhoa, setSelectedKhoa] = useState('');
   const [GVList, setGVList] = useState([]);
@@ -178,7 +168,7 @@ function QuanTriGiangVien() {
   const  AcceptDeleteButtonClick = async () => {
     try {
         
-            const dataToSave = String(values.magv);
+            const dataToSave = String(values.magv.trim());
             await DeleteGiangVien(dataToSave); // Gọi API cập nhật           
             resetForm();
             handleCloseDialog('deleteDialog');
@@ -212,7 +202,7 @@ useEffect(() => {
   
     <div>
       <Header/>
-      <NavBarMenu menuItems={menuItems} rightMenu={rightMenu} />
+      <NavBarMenu menuItems={menuItemsGV}/>
       <div className='cartFull-036'>
         <div className="cartBackground-036">
           <div className="titlepage"><p>Danh Sách Giảng Viên</p></div>
