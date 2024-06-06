@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import iconPtit from '../../assets/Logo_PTIT_University.png';
 import { getDanhSachKhoa, getDanhSachGiangVien, addGiangVien,updateGiangVien,DeleteGiangVien ,fetchImage} from '../API036/apiGiangVien.js';
-import '../Cart/Cart.css';
-import '../Table/Table.css';
-import '../Modal/Modal.css';
-import { handleOpenDialog, handleCloseDialog, previewImage ,useForm } from '../Modal/Modal.js';
+import '../Form036/Cart/Cart.css';
+import '../Form036/Table/Table.css';
+import '../Form036/Modal/Modal.css';
+import { handleOpenDialog, handleCloseDialog, previewImage ,useForm } from '../Form036/Modal/Modal.js';
 function QuanTriGiangVien() {
   const [khoaList, setKhoaList] = useState([]);
   const [selectedKhoa, setSelectedKhoa] = useState('');

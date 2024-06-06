@@ -1,6 +1,6 @@
 import React from 'react'
-import '../Cart/Cart.css'
-import '../Table/Table.css'
+import '../Form036/Cart/Cart.css'
+import '../Form036/Table/Table.css'
 function XemHocPhi() {
   return (
     <div>

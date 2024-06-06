@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import iconPtit from '../../assets/Logo_PTIT_University.png'
-import '../Cart/Cart.css'
-import '../Table/Table.css'
-import '../Modal/Modal.css'
-import { handleOpenDialog, handleCloseDialog, previewImage ,useForm,formatDate } from '../Modal/Modal.js';
+import '../Form036/Cart/Cart.css'
+import '../Form036/Table/Table.css'
+import '../Form036/Form036/Modal/Modal.css'
+import { handleOpenDialog, handleCloseDialog, previewImage ,useForm,formatDate } from '../Form036/Modal/Modal.js';
 import { getDanhSachLop ,getStudentsByClassId,addNewStudent,updateStudent,DeleteStudent,fetchStudentImage} from '../API036/apiThongTin.js';
 function QuanTriSinhVien() {
     const [lopList, setLopList] = useState([]);

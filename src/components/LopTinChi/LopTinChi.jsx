@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getDanhSachKhoa, getDanhSachNienKhoa, getDanhSachGiangVien, getDanhSachLTC, getDanhSachMonHoc, getDanhSachLop, addLTC, updateLTC,deleteLTC} from '../API036/apiLopTinChi.js'; 
-import '../Cart/Cart.css';
-import '../Table/Table.css';
-import '../Modal/Modal.css';
+import '../Form036/Cart/Cart.css';
+import '../Form036/Table/Table.css';
+import '../Form036/Modal/Modal.css';
 import { handleOpenDialog, handleCloseDialog, useForm } from './modalLTC.js';
 
 function LopTinChi() {
