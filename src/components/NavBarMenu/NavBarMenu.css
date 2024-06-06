@@ -3,8 +3,8 @@
   justify-content: center; 
   background-color: #D30000;
   padding: 0.5vw;
-  max-height: 3vw; /* Đặt chiều dài cố định là 3vw */
-  min-height: 3vw;
+  max-height: 3.5vw; /* Đặt chiều dài cố định là 3vw */
+  min-height: 3.5vw;
 }
 
 .left-nav-menu,
@@ -65,7 +65,7 @@
 }
 
 .nav-bar-menu nav .center-nav-menu a {
-  height: 3.5vw;
+  height: 3vw;
   display: flex;
   align-items: center;
   justify-content: center;

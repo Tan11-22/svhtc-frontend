@@ -67,7 +67,7 @@ export const getDanhSachLTC = async (makhoa,nienkhoa,hocki) => {
 
 export const addLTC = async (ltcData) => {
     try {
-        const response = await api.post(`${LTC_API_URL}/them-ltc`, ltcData);
+        const response = await api.post(`${LTC_API_URL}them-ltc`, ltcData);
         return response.data;
     } catch (error) {
         console.error('Error adding LTC:', error);
@@ -76,7 +76,7 @@ export const addLTC = async (ltcData) => {
 };
 export const updateLTC = async (ltcData) => {
     try {
-        const response = await api.post(`${LTC_API_URL}/update-ltc`, ltcData);
+        const response = await api.post(`${LTC_API_URL}update-ltc`, ltcData);
         return response.data;
     } catch (error) {
         console.error('Error updating LTC:', error);
@@ -85,7 +85,7 @@ export const updateLTC = async (ltcData) => {
 };
 export const deleteLTC = async (maltc) => {
     try {
-        const response = await api.get(`${LTC_API_URL}/xoa-ltc`, {
+        const response = await api.get(`${LTC_API_URL}xoa-ltc`, {
             params: {
                 'maltc': maltc
             }

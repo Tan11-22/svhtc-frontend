@@ -5,6 +5,8 @@ import userIcon from '../../assets/user.png';
 import { getDSSVHocPhi} from '../API036/apiThongTin.js';
 import NavbarMenu from '../NavBarMenu/NavBarMenu.jsx';
 import Header from '../Header/Header.jsx';
+import Footer from '../../components/Footer/Footer';
+import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
 function XemHocPhi() {
     const [hpList, setHocPhiList] = useState([]);
     useEffect(() => {
@@ -19,22 +21,10 @@ function XemHocPhi() {
 
         fetchHPList();
     }, []);
-    const menuItems = [
-        { name: "Trang chủ", link: "/" },
-        { name: "Sinh viên", link: "/sinh-vien" },
-        { name: "Giảng viên", link: "/giang-vien" },
-        { name: "Phòng giáo vụ", link: "/phong-giao-vu" },
-        { name: "Đăng kí môn học", link: "/dang-ki" },
-        { name: "Lớp tín chỉ", link: "/lop-tin-chi" },
-        { name: "Học phí", link: "/hoc-phi" }
-      ];
-      const rightMenu = [
-        { link: "#", icon: userIcon, alt: "iconthongtincanhan" }
-      ];
   return (
     <div>
         <Header></Header>
-        <NavbarMenu menuItems={menuItems} rightMenu={rightMenu} />
+        <NavbarMenu menuItems={menuItemsGV} />
       <div>
       <div className='cartFull-036'>
         <div className="cartBackground-036">
@@ -85,6 +75,7 @@ function XemHocPhi() {
             </div>
         </div>
         </div>
+        
     </div>
   )
 }
