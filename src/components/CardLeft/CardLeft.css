@@ -1,0 +1,45 @@
+.menu-li img {
+    width: 30px;
+    height: 30px;
+}
+
+.title-card {
+    font-style: normal;
+    font-size: 25px;
+    margin: 20px 0 20px 20px;
+}
+
+.menu {
+    list-style: none;
+}
+
+.menu li.active {
+    background-color:  #D30000;
+    color: white;
+  }
+  
+.menu li:hover:not(.active) {background-color: #ddd;}
+
+.menu-li {
+    display: flex;
+    justify-content: space-around;
+    height: 70px;
+    width: 100%;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.menu-li p {
+    font-size: 20px;
+}
+
+
+a {
+    text-decoration: none; /* Loại bỏ gạch chân */
+    color: inherit; /* Sử dụng màu chữ của phần tử cha */
+  }
+
+a:hover, a:focus, a:active {
+    text-decoration: none; /* Loại bỏ gạch chân khi hover, focus, active */
+    color: inherit; /* Sử dụng màu chữ của phần tử cha khi hover, focus, active */
+  }
