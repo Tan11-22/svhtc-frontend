@@ -1,0 +1,40 @@
+.table-container-036 table {
+    width: calc(100% - 4vw); /* Bảng chiếm toàn bộ chiều rộng của div, sau khi thụt vào trái và phải 2vw */
+    margin: 1vw 2vw; /* Thụt vào trái và phải 2vw, thụt vào trên dưới 1vw */
+    border-collapse: collapse; /* Gộp đường viền của các ô */
+  }
+  .table-container-036  th, td {
+    border: 0.1vw solid #ddd; /* Đường viền của các ô */
+    padding: 0.8vw; /* Khoảng cách giữa nội dung và viền */
+    text-align: left; /* Căn trái nội dung trong ô */
+    font-size: 1vw;
+  }
+  .table-container-036 th {
+    background-color: #f2f2f2; /* Màu nền của ô tiêu đề */
+  }
+  .table-container-036 td:last-child {
+    text-align: center; /* Căn giữa nội dung của ô cuối cùng */
+  }
+  .table-container-036 a {
+    padding: 0.5vw 1vw; /* Kích thước của liên kết */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    color: #fff; /* Màu chữ */
+    background-color: #007bff; /* Màu nền */
+    border-radius: 0.5vw; /* Bo tròn góc */
+  }
+  .table-container-036 img {
+    width: 4vw;
+    height: 4vw;
+    
+  }
+  .table-container-036 label{
+    margin-left: 2vw;
+  }
+  .trTongCong {
+    color: #0064F9;
+    font-weight: bold;
+  
+  }
+  .thTong{
+    text-align: right; 
+  }

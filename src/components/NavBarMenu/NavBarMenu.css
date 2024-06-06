@@ -16,7 +16,7 @@
     }
     .left-nav-menu {
       flex-grow: 1; /* Phần bên trái chiếm 15vw */
-      width: 15vw;
+      width: 10vw;
       justify-content: center; 
   }
 
@@ -27,7 +27,7 @@
 
   .right-nav-menu {
       flex-grow: 1; /* Phần bên phải chiếm 15vw */
-      width: 15vw;
+      width: 10vw;
       justify-content: center; 
   }
     
@@ -59,7 +59,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 10px; /* Tùy chỉnh padding theo nhu cầu */
+      padding: 0 1vw; /* Tùy chỉnh padding theo nhu cầu */
       background-size: cover; /* hoặc background-size: contain; tùy thuộc vào yêu cầu */
     } 
     .nav-bar-menu nav .center-nav-menu a:hover {

@@ -20,8 +20,8 @@ function NavbarMenu({ menuItems }) {
             <ul>
 
             <li><a href="#"><img src={userIcon} alt="iconthongtincanhan"></img></a></li>
-            {/* <li><a href="#"><img src="user.png" alt="iconthongtincanhan"></img></a></li>
-            <li><a href="#"><img src="user.png" alt="iconthongtincanhan"></img></a></li> */}
+         
+            {/* <li><a href="#"><img src={userIcon} alt="iconthongtincanhan"></img></a></li> */}
             
             </ul>
           </div>
