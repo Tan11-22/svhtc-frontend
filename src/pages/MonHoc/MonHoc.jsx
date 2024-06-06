@@ -2,9 +2,9 @@ import React,{useState, useEffect} from 'react'
 import "./MonHoc.css"
 import Header from '../../components/Header/Header'
 import DanhSachMonHoc from '../../components/DanhSach/DanhSachMonHoc';
-
+import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
 import CardLeft from '../../components/CardLeft/CardLeft';
-
+import NavbarMenu from '../../components/NavBarMenu/NavBarMenu';
 function MonHoc() {
   // console.log(localStorage.getItem("token"))
   const data = [
@@ -15,6 +15,7 @@ function MonHoc() {
   return (
     <div>
       <Header/>
+      <NavbarMenu menuItems={menuItemsGV}/>
       <div className='card-body'>
         <div className='card-left'>
           <CardLeft title1={"Phòng giáo vụ"} menu={data}/>
