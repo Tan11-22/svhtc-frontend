@@ -9,6 +9,12 @@ import reportWebVitals from './reportWebVitals';
 import MonHoc from './pages/MonHoc/MonHoc';
 import Lop from './pages/Lop/Lop';
 import DangKyLTC from './pages/DangKyLTC/DangKyLTC';
+import QuanTriSinhVien from './components/QuanTriSinhVien/QuanTriSinhVien'
+import QuanTriGiangVien from './components/QuanTriGiangVien/QuanTriGiangVien'
+import LopTinChi from './components/LopTinChi/LopTinChi'
+import HocPhi from './components/HocPhi/DanhSachHocPhi'
+import DSSVHocPhi from './components/HocPhi/DSSVHocPhi'
+
 
 export default function SVHTC() {
   return (
@@ -20,6 +26,11 @@ export default function SVHTC() {
           <Route path="mon-hoc" element={<MonHoc/>} />
           <Route path="lop-hoc" element={<Lop/>} />
           <Route path="dang-ky-lop" element={<DangKyLTC/>} />
+          <Route path="sinh-vien" element={<QuanTriSinhVien/>} />
+          <Route path="giang-vien" element={<QuanTriGiangVien/>} />
+          <Route path="lop-tin-chi" element={<LopTinChi/>} />
+          <Route path="hoc-phi" element={<HocPhi/>} />
+          <Route path="dssv-hoc-phi" element={<DSSVHocPhi/>} />
         </Route>
       </Routes>
     </BrowserRouter>
