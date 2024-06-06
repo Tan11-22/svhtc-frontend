@@ -8,6 +8,7 @@ import closeltc from "../../assets/closeltc.png";
 import Loading from '../../components/Loading/Loading';
 import NavbarMenu from '../../components/NavBarMenu/NavBarMenu';
 import  {menuItemsSV}  from '../../components/NavBarMenu/menu';
+import Footer from '../../components/Footer/Footer';
 
 function DangKyLTC() {
     const [loading, setLoading] = useState(true);
@@ -241,9 +242,10 @@ function DangKyLTC() {
                   </table>
                 </div>
                 
-
+                        
             </div>
         </div>
+        <Footer/>
     </div>
   )
 }
