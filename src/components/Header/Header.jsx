@@ -1,17 +1,22 @@
-import React from "react";
-import './Header.css';
-import logo from "../../assets/logo.png";
+import React from 'react'
+import logoPtit from '../../assets/Logo_PTIT_University.png'
+import './Header.css'
 function Header() {
-    return (
+  return (
+    <div>
+      <div className="container-header">
         <div>
-            <div className="header-bar-logo">
-            </div>
-            <div className="header-bar-select">
-                
-            </div>  
-            
+            <img className="image-header" src={logoPtit} alt="logo-ptit"></img>
         </div>
-    );
+        <div className="text-container-header">
+            <p className="first-line-header">Học viện Công Nghệ Bưu chính Viễn thông - cơ sở tại TP. Hồ Chí Minh</p>
+            <p className="second-line-header">Posts and Telecommunications Institute of Technology</p>
+        </div>
+        </div>
+    </div>
+
+    
+  )
 }
 
-export default Header;
+export default Header
