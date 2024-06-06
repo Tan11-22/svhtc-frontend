@@ -231,13 +231,3 @@ img {
 .slider-controls button {
     margin-right: 10px;
 }
-
-.header-name{
-    position: relative;
-    color: white;
-    text-align: center;
-    padding-left: 25%;
-}
-.login-button:hover {
-    background-color: #c71111; /* Thay đổi màu nền của nút khi di chuột qua */
-}

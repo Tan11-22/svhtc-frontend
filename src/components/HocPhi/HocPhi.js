@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import logo from '../Logo/logoptithcm.png'
 import './HocPhi.css'
 export default function HocPhi() {
+    // console.log("abc");
     const [maSv, setMaSv] = useState('');
     const [maXacNhan, setMaXacNhan] = useState('');
     const [fillMaSv, setFillMaSv] = useState(true);
@@ -128,6 +129,8 @@ export default function HocPhi() {
                     const ctx = canvas.getContext('2d');
                     initializeCaptcha(ctx);
                     // generateCode();
+                } else if(res.status === 503){
+                    setContentHocPhi(false);
                 }
             })
             .catch(error => {

@@ -6,14 +6,16 @@
 }
 
 .content-1 {
-    width: 100%;
-    margin-top: 20px;
+    flex: 1;
+}
+.info {
+    flex: 1;
+    padding: 20px;
 }
 
 .student-info {
-    flex: 1;
+    display: flex;
     border: 1px solid #ccc;
-    padding: 20px;
     border-radius: 5px;
     background-color: #f9f9f9;
     max-width: 90%;
@@ -28,8 +30,9 @@
 }
 
 .content-right {
-    margin-top: 1px;
-    padding-right: 2%;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
 }
 
 h2 {
@@ -42,7 +45,7 @@ h2 {
 }
 
 .info-label {
-    flex: 1;
+    flex: 2;
     font-weight: bold;
 }
 
@@ -50,8 +53,14 @@ h2 {
     flex: 2;
 }
 
-@media (max-width: 768px) {
-    .content-1 {
-        flex-direction: column;
-    }
+.student-image-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+}
+
+.student-image {
+    max-width: 50%;
+    max-height: 50%;
 }

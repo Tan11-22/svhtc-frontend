@@ -1,0 +1,48 @@
+.container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: auto;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container label {
+    margin-right: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.container select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.container div {
+    display: flex;
+    align-items: center;
+}
+
+.btn-taidssinhvien{
+    margin-right: 2%;
+    margin-left: auto; 
+    padding: 10px 20px; 
+    background-color: #a50d27; 
+    color: #ffffff; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-weight: bold;
+    white-space: nowrap;
+}
