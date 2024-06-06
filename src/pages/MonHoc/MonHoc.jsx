@@ -5,6 +5,7 @@ import DanhSachMonHoc from '../../components/DanhSach/DanhSachMonHoc';
 import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
 import CardLeft from '../../components/CardLeft/CardLeft';
 import NavbarMenu from '../../components/NavBarMenu/NavBarMenu';
+import Footer from '../../components/Footer/Footer';
 function MonHoc() {
   // console.log(localStorage.getItem("token"))
   const data = [
@@ -24,6 +25,7 @@ function MonHoc() {
             <DanhSachMonHoc/>
         </div>
       </div>
+      <Footer/>
     </div>
   )
 }

@@ -1,0 +1,22 @@
+.footer-62 {
+    width: 100%; 
+    background-color: rgb(245,245,255);
+    display: flex;
+    justify-content: center;
+}
+
+.footer-card-62-bb {
+    width: 100%; 
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 0 0 ;
+    
+}
+.footer-card-62 {
+    width: 1400px;
+    height: 200px;   
+}
+.footer-info{
+    margin: 20px 0 0 20px;
+}
