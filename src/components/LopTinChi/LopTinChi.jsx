@@ -1,11 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { getDanhSachKhoa, getDanhSachNienKhoa, getDanhSachGiangVien, getDanhSachLTC, getDanhSachMonHoc, getDanhSachLop, addLTC, updateLTC,deleteLTC} from '../API036/apiLopTinChi.js'; 
+import { ktLTC,getDanhSachKhoa, getDanhSachNienKhoa, getDanhSachGiangVien, getDanhSachLTC, getDanhSachMonHoc, getDanhSachLop, addLTC, updateLTC,deleteLTC} from '../API036/apiLopTinChi.js'; 
 import '../Form036/Cart/Cart.css';
 import '../Form036/Table/Table.css';
+import userIcon from '../../assets/user.png';
 import '../Form036/Modal/Modal.css';
+import Header from '../Header/Header.jsx';
+import NavBarMenu from '../NavBarMenu/NavBarMenu.jsx'
 import { handleOpenDialog, handleCloseDialog, useForm } from './modalLTC.js';
 
 function LopTinChi() {
+    const menuItems = [
+        { name: "Trang chủ", link: "/" },
+        { name: "Sinh viên", link: "/sinh-vien" },
+        { name: "Giảng viên", link: "/giang-vien" },
+        { name: "Phòng giáo vụ", link: "/phong-giao-vu" },
+        { name: "Đăng kí môn học", link: "/dang-ki" },
+        { name: "Lớp tín chỉ", link: "/lop-tin-chi" },
+        { name: "Học phí", link: "/hoc-phi" }
+      ];
+      const rightMenu = [
+        { link: "#", icon: userIcon, alt: "iconthongtincanhan" }
+      ];
     const [khoaList, setKhoaList] = useState([]);
     const [selectedKhoa, setSelectedKhoa] = useState('');
     const [nienKhoaList, setNienKhoaList] = useState([]);
@@ -258,8 +273,14 @@ function LopTinChi() {
 
     const  AcceptDeleteButtonClick = async () => {
         try {
-            
+               
                 const dataToSave = values.maltc;
+                const check = await ktLTC(dataToSave)
+                if (check != 0)
+                    {
+                        alert('Lớp tín chỉ này đã có sinh viên đăng kí không thế xóa');
+                        return;
+                    }
                 await deleteLTC(dataToSave); // Gọi API cập nhật           
                 resetForm();
                 handleCloseDialog('deleteDialog');
@@ -306,6 +327,8 @@ function LopTinChi() {
 
     return (
         <div>
+              <Header></Header>
+              <NavBarMenu menuItems={menuItems} rightMenu={rightMenu} />
             <div className='cartFull-036'>
                 <div className="cartBackground-036">
                     <div className="titlepage"><p>Danh Sách Lớp Tín Chỉ</p></div>
@@ -384,18 +407,18 @@ function LopTinChi() {
                             <span className="close" id="closeDialogButton" onClick={() => handleCloseDialog('LTCDialog')}>&times;</span>
                             <h3>{selectedLTC ? 'Chỉnh sửa lớp tín chỉ' : 'Thêm lớp tín chỉ mới'}</h3>
                             <form id="studentForm">
-                                <div className="modal-column-left">
+                                <div className="modal-column-left-036">
                                     <div className="form-group">
                                         <label htmlFor="KhoaCode">Mã khoa</label>
-                                        <input type="text" className="form-control" value={values.makhoa} id="KhoaCode" readOnly />
+                                        <input type="text" className="form-control-036" value={values.makhoa} id="KhoaCode" readOnly />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="NienKhoa">Niên khóa</label>
-                                        <input type="text" className="form-control" value={values.nienkhoa} id="NienKhoa" readOnly />
+                                        <input type="text" className="form-control-036" value={values.nienkhoa} id="NienKhoa" readOnly />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="HocKi">Học kì</label>
-                                        <input type="text" className="form-control" value={values.hocki} id="HocKi" readOnly />
+                                        <input type="text" className="form-control-036" value={values.hocki} id="HocKi" readOnly />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="MonHoc">Môn Học</label>
@@ -408,10 +431,10 @@ function LopTinChi() {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="Nhom">Nhóm</label>
-                                        <input type="number" className="form-control" id="nhom" name="nhom" value={values.nhom} onChange={handleChange} placeholder="Nhập nhóm" required />
+                                        <input type="number" className="form-control-036" id="nhom" name="nhom" value={values.nhom} onChange={handleChange} placeholder="Nhập nhóm" required />
                                     </div>
                                 </div>
-                                <div className="modal-column-right">
+                                <div className="modal-column-right-036">
                                     <div className="form-group">
                                         <label htmlFor="GiangVien">Giảng viên</label>
                                         <select name="items" id="magv" onChange={handleDropdownChange} value={values.magv} >
@@ -422,12 +445,12 @@ function LopTinChi() {
                                         </select>
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="SoSVTT">Số sinh viên tối thiểu</label>
-                                        <input type="number" className="form-control" id="sosvtt" name="sosvtt" value={values.sosvtt} onChange={handleChange} placeholder="Nhập Số SV Tối Thiểu" required min="30" max="50" />
+                                        <label htmlFor="SoSVTT" >Số sinh viên tối thiểu</label>
+                                        <input type="number" className="form-control-036" id="sosvtt" name="sosvtt" value={values.sosvtt} onChange={handleChange} placeholder="Nhập Số SV Tối Thiểu" required min="30" max="50" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="SoSVTD">Số sinh viên tối đa</label>
-                                        <input type="number" className="form-control" id="sosvtd" name="sosvtd" value={values.sosvtd} onChange={handleChange} placeholder="Nhập Số SV Tối Đa" required min="60" max="150" />
+                                        <input type="number" className="form-control-036" id="sosvtd" name="sosvtd" value={values.sosvtd} onChange={handleChange} placeholder="Nhập Số SV Tối Đa" required min="60" max="150" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="Lop">Lớp</label>
@@ -446,9 +469,9 @@ function LopTinChi() {
                     <div id="deleteDialog" class="modal-036">
                     <div class="modal-content-036">
                     <span class="close" id="closeDialogButton" onClick={() => handleCloseDialog('deleteDialog')}>&times;</span>
-                    <h3>Xóa Lớp tín chỉ</h3>
+                    <p className='titleModal'>Xóa Lớp tín chỉ</p>
 
-                    <input type="text" class="form-control" id="XoaLTC" value={`Bạn có muốn xóa lớp tín chỉ môn ${values.tenmh}, nhóm ${values.nhom} không?`}  readOnly='readOnly' ></input>
+                    <input type="text" class="form-control-036" id="XoaLTC" value={`Bạn có muốn xóa lớp tín chỉ môn ${values.tenmh}, nhóm ${values.nhom} không?`}  readOnly='readOnly' ></input>
                     <button type="button" className="SaveButton" id="deleteSVButton" onClick={AcceptDeleteButtonClick}>Đồng ý</button>
                 
                 </div>

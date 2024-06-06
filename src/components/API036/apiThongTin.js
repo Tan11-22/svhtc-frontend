@@ -1,5 +1,5 @@
-import axios from 'axios';
-import {api, SINH_VIEN_API_URL,HOC_PHI_API_URL} from "../../api/apiConfig";
+
+import api,{SINH_VIEN_API_URL,HOC_PHI_API_URL} from "../../api/apiConfig";
 
 
 
@@ -101,7 +101,16 @@ export const getHocPhiSV = async (masv) => {
         });
         return response.data;
     } catch (error) {
-        console.error('Error fetching the students by class ID:', error);
+        console.error('Error fetching hp:', error);
+        throw error;
+    }
+};
+export const getDSSVHocPhi = async () => {
+    try {
+        const response = await api.get(`${HOC_PHI_API_URL}xem-dssv-hoc-phi`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching the students dssvhp:', error);
         throw error;
     }
 };

@@ -1,4 +1,4 @@
-import {api, GIANG_VIEN_API_URL} from "../../api/apiConfig";
+import api,{ GIANG_VIEN_API_URL} from "../../api/apiConfig";
 export const getDanhSachKhoa = async () => {
     try {
         const response = await api.get(`${GIANG_VIEN_API_URL}/loc-ma-khoa`);
@@ -25,7 +25,7 @@ export const addGiangVien = async (giangVien, avatarAdd) => {
     formData.append('img', avatarAdd);
 
     try {
-        const response = await api.post(`${GIANG_VIEN_API_URL}/them-giang-vien`, formData, {
+        const response = await api.post(`${GIANG_VIEN_API_URL}them-giang-vien`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -42,7 +42,7 @@ export const updateGiangVien = async (giangVien, avatarAdd) => {
     formData.append('img', avatarAdd);
 
     try {
-        const response = await api.post(`${GIANG_VIEN_API_URL}/update-gv`, formData, {
+        const response = await api.post(`${GIANG_VIEN_API_URL}update-gv`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -55,7 +55,7 @@ export const updateGiangVien = async (giangVien, avatarAdd) => {
 };
 export const fetchImage = async (imageName) => {
     try {
-        const response = await api.get(`${GIANG_VIEN_API_URL}/get-img`, {
+        const response = await api.get(`${GIANG_VIEN_API_URL}get-img`, {
             params: { name: imageName },
             responseType: 'blob',
         });
@@ -67,7 +67,7 @@ export const fetchImage = async (imageName) => {
 };
 export const DeleteGiangVien = async (magv) => {
     try {
-        const response = await api.get(`${GIANG_VIEN_API_URL}/xoa-giang-vien`, {
+        const response = await api.get(`${GIANG_VIEN_API_URL}xoa-giang-vien`, {
             params: { 'ma-gv': magv},
         });
         return response.data;

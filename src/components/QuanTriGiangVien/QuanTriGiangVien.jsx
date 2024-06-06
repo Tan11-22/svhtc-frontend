@@ -3,9 +3,24 @@ import iconPtit from '../../assets/Logo_PTIT_University.png';
 import { getDanhSachKhoa, getDanhSachGiangVien, addGiangVien,updateGiangVien,DeleteGiangVien ,fetchImage} from '../API036/apiGiangVien.js';
 import '../Form036/Cart/Cart.css';
 import '../Form036/Table/Table.css';
+import userIcon from '../../assets/user.png';
 import '../Form036/Modal/Modal.css';
+import Header from '../Header/Header.jsx';
+import NavBarMenu from '../NavBarMenu/NavBarMenu.jsx'
 import { handleOpenDialog, handleCloseDialog, previewImage ,useForm } from '../Form036/Modal/Modal.js';
 function QuanTriGiangVien() {
+  const menuItems = [
+    { name: "Trang chủ", link: "/" },
+    { name: "Sinh viên", link: "/sinh-vien" },
+    { name: "Giảng viên", link: "/giang-vien" },
+    { name: "Phòng giáo vụ", link: "/phong-giao-vu" },
+    { name: "Đăng kí môn học", link: "/dang-ki" },
+    { name: "Lớp tín chỉ", link: "/lop-tin-chi" },
+    { name: "Học phí", link: "/hoc-phi" }
+  ];
+  const rightMenu = [
+    { link: "#", icon: userIcon, alt: "iconthongtincanhan" }
+  ];
   const [khoaList, setKhoaList] = useState([]);
   const [selectedKhoa, setSelectedKhoa] = useState('');
   const [GVList, setGVList] = useState([]);
@@ -194,7 +209,10 @@ useEffect(() => {
 }, [GVList]);
 
   return (
+  
     <div>
+      <Header/>
+      <NavBarMenu menuItems={menuItems} rightMenu={rightMenu} />
       <div className='cartFull-036'>
         <div className="cartBackground-036">
           <div className="titlepage"><p>Danh Sách Giảng Viên</p></div>
@@ -261,24 +279,24 @@ useEffect(() => {
           <div id="GVDialog" className="modal-036">
             <div className="modal-content-036">
               <span className="close" id="closeDialogButton" onClick={() => handleCloseDialog('GVDialog')}>&times;</span>
-              <h3>{selectedGV ? 'Chỉnh sửa giảng viên' : 'Thêm giảng viên mới'}</h3>
+              <p className='titleModal'>{selectedGV ? 'Chỉnh sửa giảng viên' : 'Thêm giảng viên mới'}</p>
               <form id="studentForm">
-                <div className="modal-column-left">
+                <div className="modal-column-left-036">
                   <div className="form-group">
                     <label htmlFor="KhoaCode">Mã khoa</label>
-                    <input type="text" className="form-control" value={values.makhoa} id="KhoaCode" readOnly />
+                    <input type="text" className="form-control-036" value={values.makhoa} id="KhoaCode" readOnly />
                   </div>
                   <div className="form-group">
                     <label htmlFor="magv">Mã giảng viên</label>
-                    <input type="text" className="form-control" value={values.magv} placeholder='Nhập mã giảng viên' id="magv" name="magv" onChange={handleChange} readOnly={!!selectedGV} />
+                    <input type="text" className="form-control-036" value={values.magv} placeholder='Nhập mã giảng viên' id="magv" name="magv" onChange={handleChange} readOnly={!!selectedGV} />
                   </div>
                   <div className="form-group">
                     <label htmlFor="ho">Họ</label>
-                    <input type="text" className="form-control" value={values.ho} placeholder='Nhập họ giảng viên' id="ho" name="ho" onChange={handleChange} />
+                    <input type="text" className="form-control-036" value={values.ho} placeholder='Nhập họ giảng viên' id="ho" name="ho" onChange={handleChange} />
                   </div>
                   <div className="form-group">
                     <label htmlFor="ten">Tên</label>
-                    <input type="text" className="form-control" value={values.ten} id="ten" name="ten" placeholder='Nhập tên giảng viên' onChange={handleChange} />
+                    <input type="text" className="form-control-036" value={values.ten} id="ten" name="ten" placeholder='Nhập tên giảng viên' onChange={handleChange} />
                   </div>
                   <div className="form-group">
                     <label htmlFor="hocvi">Học vị</label>
@@ -297,12 +315,9 @@ useEffect(() => {
                       <option key={'Giáo sư'} value={'Giáo sư'}>Giáo sư</option>
                     </select>
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="chuyenmon">Chuyên môn</label>
-                    <input type="text" className="form-control" id="chuyenmon" name="chuyenmon" value={values.chuyenmon} placeholder="Nhập chuyên môn" onChange={handleChange} required />
-                  </div>
+                 
                 </div>
-                <div className="modal-column-right">
+                <div className="modal-column-right-036">
                   <div className="form-group">
                     <label htmlFor="avatarAdd">Ảnh giảng viên</label>
                     <div className="image-upload">
@@ -311,7 +326,7 @@ useEffect(() => {
                       <input
                         type="file"
                         hidden
-                        className="form-control-file"
+                        className="form-control-036-file"
                         id="avatarAdd"
                         accept="image/*"
                         onChange={handleFileChange} // Gọi hàm xử lý sự kiện khi input thay đổi
@@ -319,19 +334,22 @@ useEffect(() => {
                       <label htmlFor="avatarAdd" id="avatarButton">Chọn ảnh</label>
                     </div>
                   </div>
-                  
+                  <div className="form-group">
+                    <label htmlFor="chuyenmon">Chuyên môn</label>
+                    <input type="text" className="form-control-036" id="chuyenmon" name="chuyenmon" value={values.chuyenmon} placeholder="Nhập chuyên môn" onChange={handleChange} required />
+                  </div>
                   <div className="form-group">
                     <label htmlFor="sdt">Số điện thoại</label>
-                    <input type="tel" className="form-control" id="sdt" name="sdt" value={values.sdt} placeholder="Nhập số điện thoại" onChange={handleChange} required />
+                    <input type="tel" className="form-control-036" id="sdt" name="sdt" value={values.sdt} placeholder="Nhập số điện thoại" onChange={handleChange} required />
                   </div>
                  
-                  <div class="form-group">
+                  <div className="form-group">
                               { selectedGV && (
                                   <>
                                      <label htmlFor="email">Email</label>
                                       <input
                                         type="email"
-                                        className="form-control"
+                                        className="form-control-036"
                                         id="email"
                                         name="email"
                                         value={values.email}
@@ -350,8 +368,8 @@ useEffect(() => {
           <div id="deleteDialog" className="modal-036">
             <div className="modal-content-036">
               <span className="close" id="closeDialogButton" onClick={() => handleCloseDialog('deleteDialog')}>&times;</span>
-              <h3>Xóa giảng viên</h3>
-              <input type="text" className="form-control" id="XoaGV" value={`Bạn có muốn xóa giảng viên mã ${values.magv.trim()} - ${values.ho} ${values.ten} không?`} readOnly />
+              <p className='titleModal'>Xóa giảng viên</p>
+              <input type="text" className="form-control-036" id="XoaGV" value={`Bạn có muốn xóa giảng viên mã ${values.magv.trim()} - ${values.ho} ${values.ten} không?`} readOnly />
               <button type="button" className="SaveButton" id="deleteGVButton" onClick={AcceptDeleteButtonClick}>Đồng ý</button>
             </div>
           </div>

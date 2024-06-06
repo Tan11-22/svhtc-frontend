@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body
+{
+    width: 100%;
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+}
+
+.card{
+    display: flex;
+    padding: 20px;
+    background: #fff;
+    max-width: 1400px;
+    min-width: 850px;
+    min-height: 600px;
+    margin: auto;
+}
+
+.btn-submit {
+    width: 80%;
+    text-align: right;
+}
+
+.btn-submit button{
+    margin-top: 40px;
+    background-color: #D30000;
+    border-radius: 15%;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.btn-submit img {
+    width: 40px;
+    height: 40px;
+}
+
+.background-theme {
+    background-color: rgb(245, 245, 250);
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+}
+
+.card .loginFrom {
+    width: 50%;
+}
+.card .brand {
+    width: 50%;
+    background-color: #D30000;
+    text-align: center;
+    position: relative;
+}
+
+.card .brand ul {
+    position: absolute;
+    bottom: 0;
+    margin: 0px 0px 10px 20px;
+    text-align: left;
+    font-size: 10px;
+    
+}
+.card .brand .p {
+    font-size: 20px;
+}
+/* .loginFrom {
+       
+} */
+
+.card-1 {
+    border: 3px solid black;
+    width: 80%;
+    border-radius: 15px;
+    height: 80%;
+    margin-left: 10%;
+    margin-top: 10%;
+    display: flex;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    flex-direction: column;
+    justify-content: center;
+}
+.form-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-control {
+    margin-top: 20px;
+    width: 80%;
+    text-align: left;
+}
+.form-control input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 0 0 0 10px;
+}
+
+.brand img {
+    width: 150px;
+    height: 150px;
+    margin-top: 10%;
+}
+
+#title-dang-nhap {
+    display: flex;
+    font-size: 24px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+#quen-mat-khau {
+    width: 80%;
+    text-align: left;
+    margin-top: 10px;
+}
+
+#quen-mat-khau a {
+    color: #D30000;
+    
+}
+
+#error {
+    width: 80%;
+    text-align: left;
+    color: #D30000;
+    margin-top: 10px;
+    height: 30px;
+}

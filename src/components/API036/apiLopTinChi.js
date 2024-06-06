@@ -1,5 +1,5 @@
-import axios from 'axios';
-import {api,LTC_API_URL } from '../../api/apiConfig';
+
+import api,{LTC_API_URL } from '../../api/apiConfig';
 export const getDanhSachKhoa = async () => {
     try {
         const response = await api.get(`${LTC_API_URL}/loc-ma-khoa`);
@@ -91,6 +91,19 @@ export const deleteLTC = async (maltc) => {
             }
         });
         return response.status; // Trả về dữ liệu từ phản hồi nếu cần
+    } catch (error) {
+        console.error('Error deleting LTC:', error);
+        throw error;
+    }
+};
+export const ktLTC = async (maltc) => {
+    try {
+        const response = await api.get(`${LTC_API_URL}/kt-ltc`, {
+            params: {
+                'maltc': maltc
+            }
+        });
+        return response.data; // Trả về dữ liệu từ phản hồi nếu cần
     } catch (error) {
         console.error('Error deleting LTC:', error);
         throw error;

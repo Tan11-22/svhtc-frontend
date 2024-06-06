@@ -2,10 +2,25 @@ import React, { useEffect, useState } from 'react';
 import iconPtit from '../../assets/Logo_PTIT_University.png'
 import '../Form036/Cart/Cart.css'
 import '../Form036/Table/Table.css'
-import '../Form036/Form036/Modal/Modal.css'
+import '../Form036/Modal/Modal.css'
+import userIcon from '../../assets/user.png';
+import Header from '../Header/Header.jsx';
+import NavBarMenu from '../NavBarMenu/NavBarMenu.jsx'
 import { handleOpenDialog, handleCloseDialog, previewImage ,useForm,formatDate } from '../Form036/Modal/Modal.js';
 import { getDanhSachLop ,getStudentsByClassId,addNewStudent,updateStudent,DeleteStudent,fetchStudentImage} from '../API036/apiThongTin.js';
 function QuanTriSinhVien() {
+  const menuItems = [
+    { name: "Trang chủ", link: "/" },
+    { name: "Sinh viên", link: "/sinh-vien" },
+    { name: "Giảng viên", link: "/giang-vien" },
+    { name: "Phòng giáo vụ", link: "/phong-giao-vu" },
+    { name: "Đăng kí môn học", link: "/dang-ki" },
+    { name: "Lớp tín chỉ", link: "/lop-tin-chi" },
+    { name: "Học phí", link: "/hoc-phi" }
+  ];
+  const rightMenu = [
+    { link: "#", icon: userIcon, alt: "iconthongtincanhan" }
+  ];
     const [lopList, setLopList] = useState([]);
     const [selectedLop, setSelectedLop] = useState('');
     const [studentList, setStudentList] = useState([]);
@@ -198,6 +213,8 @@ function QuanTriSinhVien() {
 
   return (
     <div>
+         <Header/>
+         <NavBarMenu menuItems={menuItems} rightMenu={rightMenu} />
       <div className='cartFull-036'>
         <div className="cartBackground-036">
             <div className="titlepage"><p>Danh Sách Sinh Viên</p></div>
@@ -267,73 +284,46 @@ function QuanTriSinhVien() {
             <div id="SVDialog" className="modal-036">
                 <div className="modal-content-036">
                     <span className="close" id="closeAddDialogButton" onClick={() => handleCloseDialog('SVDialog')}>&times;</span>
-                    <h3>{selectedSV ? 'Chỉnh sửa sinh viên' : 'Thêm sinh viên mới'}</h3>
+                    <p className='titleModal'>{selectedSV ? 'Chỉnh sửa sinh viên' : 'Thêm sinh viên mới'}</p>
 
                     <form id="studentForm">
-                    <div className="modal-column-left">
+                    <div className="modal-column-left-036">
 
                           <div className="form-group">
                           <label htmlFor="malop">Mã lớp</label>
-                          <input type="text" className="form-control" value={values.malop} id="malop" name='malop' readOnly />
+                          <input type="text" className="form-control-036" value={values.malop} id="malop" name='malop' readOnly />
                         </div>
                         <div className="form-group">
                         <label htmlFor="masv">Mã sinh viên</label>
-                        <input type="text" className="form-control" id="masv" name="masv"placeholder="Nhập mã sinh viên" required="required" value={values.masv} onChange={handleChange}readOnly={!!selectedSV}></input>
+                        <input type="text" className="form-control-036" id="masv" name="masv"placeholder="Nhập mã sinh viên" required="required" value={values.masv} onChange={handleChange}readOnly={!!selectedSV}></input>
                         </div>
                         <div className="form-group">
                         <label htmlFor="hoSv">Họ</label>
-                        <input type="text" className="form-control" id="ho" name="ho" placeholder="Nhập họ" required="required"value={values.ho} onChange={handleChange}></input>
+                        <input type="text"  id="ho" name="ho" placeholder="Nhập họ" required="required"value={values.ho} onChange={handleChange}></input>
                         </div>
                         <div className="form-group">
                         <label htmlFor="tenSv">Tên</label>
-                        <input type="text" className="form-control" id="ten" name="ten" placeholder="Nhập tên" required="required" value={values.ten} onChange={handleChange}></input>
+                        <input type="text" className="form-control-036" id="ten" name="ten" placeholder="Nhập tên" required="required" value={values.ten} onChange={handleChange}></input>
                         </div>
                         <div className="form-group">
                         <label htmlFor="phai">Giới tính</label>
-                        <select className="form-control" id="phai" name='phai' onChange={handleChange} value={values.phai}>
+                        <select className="form-control-036" id="phai" name='phai' onChange={handleChange} value={values.phai}>
                             <option value="false">Nam</option>
                             <option value="true">Nữ</option>
                         </select>
                         </div>
                         <div className="form-group">
                         <label htmlFor="ngaysinh">Ngày sinh</label>
-                        <input type="date" className="form-control" id="ngaysinh" name ="ngaysinh" required="required" value={values.ngaysinh} onChange={handleChange}></input>
+                        <input type="date" className="form-control-036" id="ngaysinh" name ="ngaysinh" required="required" value={values.ngaysinh} onChange={handleChange}></input>
                         </div>
-                    </div>
-                    <div className="modal-column-right">
-
+                        
                     <div className="form-group">
-                    <label htmlFor="avatarAdd">Ảnh sinh viên</label>
-                    <div className="image-upload">
-                    <img id="SVImage" src={avatarAdd ? URL.createObjectURL(new Blob([avatarAdd])) : iconPtit} alt="SVImage" />
-
-                      <input
-                        type="file"
-                        hidden
-                        className="form-control-file"
-                        id="avatarAdd"
-                        accept="image/*"
-                        onChange={handleFileChange} // Gọi hàm xử lý sự kiện khi input thay đổi
-                      />
-                      <label htmlFor="avatarAdd" id="avatarButton">Chọn ảnh</label>
-                    </div>
-                  </div>
-                        <div className="form-group">
-                        <label htmlFor="diachi">Địa chỉ</label>
-                        <input type="text" className="form-control" id="diachi" name="diachi" placeholder="Nhập địa chỉ" required="required" value={values.diachi} onChange={handleChange}></input>
-                        </div>
-                        <div className="form-group">
-                        <label htmlFor="sdt">Số điện thoại</label>
-                        <input type="tel" className="form-control" id="sdt" name="sdt" placeholder="Nhập số điện thoại" required="required" value={values.sdt} onChange={handleChange}></input>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         { selectedSV && (
                            <>
                           <label htmlFor="email">Email</label>
                             <input
                              type="email"
-                             className="form-control"
+                             className="form-control-036"
                              id="email"
                              name="email"
                              value={values.email} 
@@ -344,6 +334,35 @@ function QuanTriSinhVien() {
                             </>
                         )}
                       </div>
+                    </div>
+                    <div className="modal-column-right-036">
+
+                    <div className="form-group">
+                    <label htmlFor="avatarAdd">Ảnh sinh viên</label>
+                    <div className="image-upload">
+                    <img id="SVImage" src={avatarAdd ? URL.createObjectURL(new Blob([avatarAdd])) : iconPtit} alt="SVImage" />
+
+                      <input
+                        type="file"
+                        hidden
+                        className="form-control-036-file"
+                        id="avatarAdd"
+                        accept="image/*"
+                        onChange={handleFileChange} // Gọi hàm xử lý sự kiện khi input thay đổi
+                      />
+                      <label htmlFor="avatarAdd" id="avatarButton">Chọn ảnh</label>
+                    </div>
+                  </div>
+                        <div className="form-group">
+                        <label htmlFor="diachi">Địa chỉ</label>
+                        <input type="text" className="form-control-036" id="diachi" name="diachi" placeholder="Nhập địa chỉ" required="required" value={values.diachi} onChange={handleChange}></input>
+                        </div>
+                        <div className="form-group">
+                        <label htmlFor="sdt">Số điện thoại</label>
+                        <input type="tel" className="form-control-036" id="sdt" name="sdt" placeholder="Nhập số điện thoại" required="required" value={values.sdt} onChange={handleChange}></input>
+                        </div>
+                    
+                      </div>
                     </form>
                     <button type="button" className="SaveButton" id="saveLTC" onClick={handleSaveButtonClick}>Lưu</button>
                 </div>
@@ -352,8 +371,8 @@ function QuanTriSinhVien() {
                 <div id="deleteDialog" className="modal-036">
                 <div className="modal-content-036">
                 <span className="close" id="closeDialogButton" onClick={() => handleCloseDialog('deleteDialog')}>&times;</span>
-                <h3>Xóa sinh viên</h3>
-                <input type="text" className="form-control" id="XoaSV" value={`Bạn có muốn xóa sinh viên mã ${values.masv.trim()} - ${values.ho} ${values.ten} không?`} readOnly />
+                <p className='titleModal'>Xóa sinh viên</p>
+                <input type="text" className="form-control-036" id="XoaSV" value={`Bạn có muốn xóa sinh viên mã ${values.masv.trim()} - ${values.ho} ${values.ten} không?`} readOnly />
                 <button type="button" className="SaveButton" id="deleteGVButton" onClick={AcceptDeleteButtonClick}>Đồng ý</button>
                 </div>
             </div>

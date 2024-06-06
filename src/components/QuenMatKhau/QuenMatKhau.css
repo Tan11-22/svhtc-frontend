@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0,0.5);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    overflow: auto; /* Enable scroll if needed */
+
+}
+.modal-container {
+    max-width: 600px;
+    width: 100%;
+    position: fixed;
+    top : 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFF;
+    text-align: center;
+    align-items: center;
+    border-radius: 15px;
+}
+.modal-container form {
+    width: 100%;
+}
+.modal-close{
+    width: 100%;
+    text-align: right;
+}
+.modal-close img {
+    width: 40px;
+    height: 40px;
+}
+.modal-title {
+    font-family: 'Inter';
+    font-style: normal;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 24px;
+    margin: 10px 0px 40px 0px;
+}
+
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-control {
+    margin-top: 20px;
+    width: 80%;
+    text-align: left;
+}
+.form-control input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.form_group_recaptcha > div > div {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    place-content: center;
+} 
+
+#btn-send-to-email {
+    margin-top: 40px;
+    background-color: #D30000;
+    border-radius: 15px;
+    height: 60px;
+    width:200px;
+    margin-bottom: 20px;
+}
