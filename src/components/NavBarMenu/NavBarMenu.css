@@ -55,6 +55,14 @@
   width: 2.5vw;
   height: 2.5vw;
 }
+.icon-right {
+  width: 2.5vw;
+  height: 2.5vw;
+  cursor: pointer;
+}
+.an {
+  display: none;
+}
 
 .nav-bar-menu nav .center-nav-menu a {
   height: 3.5vw;

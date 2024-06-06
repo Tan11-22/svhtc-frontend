@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
+import login1 from '../../assets/login1.png';
+import logout from '../../assets/logout.png';
+import account from '../../assets/account.png';
+import { useNavigate } from 'react-router-dom';
 import './NavBarMenu.css';
 
-function NavbarMenu({ menuItems, rightMenu }) {
+function NavbarMenu({ menuItems }) {
+  const navigate = useNavigate();
   const location = useLocation();
   const [activeItem, setActiveItem] = useState(location.pathname);
-
+  const user = localStorage.getItem("username")
   const handleClick = (link) => {
     setActiveItem(link);
   };
-
+  const handleClickLog = () =>{
+    if(user) {
+      localStorage.removeItem("username")
+    } 
+    navigate("/login")
+  }
+ 
   return (
     <div>
       <div className="nav-bar-menu">
@@ -33,13 +43,19 @@ function NavbarMenu({ menuItems, rightMenu }) {
           </div>
           <div className="right-nav-menu">
             <ul>
-              {rightMenu.map((item, index) => (
-                <li key={index}>
-                  <Link to={item.link}>
-                    <img src={item.icon} alt={item.alt} />
-                  </Link>
-                </li>
-              ))}
+            <li >
+                <Link to={"#"}>
+                    <img className={user ?"icon-right":"icon-right an"} src={account} />
+                </Link>
+            </li>
+                    
+            <li >
+                <img className="icon-right" src={user?logout:login1} onClick={handleClickLog} />
+              </li>
+                
+                     
+                
+                
             </ul>
           </div>
         </nav>

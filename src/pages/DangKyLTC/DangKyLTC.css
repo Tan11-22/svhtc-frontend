@@ -1,7 +1,7 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
-}
+} */
 
 
 .card-body {
@@ -46,7 +46,7 @@
     position: relative;
 }
   
-  select {
+.custom-select select {
     appearance: none;
     /*  safari  */
     -webkit-appearance: none;
