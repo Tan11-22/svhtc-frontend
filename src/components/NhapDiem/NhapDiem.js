@@ -9,10 +9,16 @@ export default function NhapDiem() {
     const [selectedSubject, setSelectedSubject] = useState('');
     const [listDiemSinhVienLtc, setListDiemSinhVienLtc] = useState([]);
 
-    let maGv = 'GV01';
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
+
     useEffect(() => {
-        fetch(`api/thong-tin/giang-vien/danh-sach-ltc?ma-gv=${maGv}`, {
-            method: 'GET'
+        fetch(`api/thong-tin/giang-vien/danh-sach-ltc?ma-gv=${username}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
         }).then(res => {
             if (res.status === 200) {
                 res.json().then(data => {
@@ -25,7 +31,7 @@ export default function NhapDiem() {
         }).catch(error => {
             console.error('Lỗi khi gọi API:', error);
         });
-    }, [maGv]) // khi nào mã gv thay đổi thì api đc call lại
+    }, [username, token]) // khi nào mã gv thay đổi thì api đc call lại
     // Lọc ds năm học
     const nienKhoaList = [...new Set(dataLtcTheoGv.map(item => item.NIENKHOA))];
 
@@ -54,7 +60,11 @@ export default function NhapDiem() {
 
         // call api
         fetch(`api/thong-tin/giang-vien/danh-sach-sinh-vien-ltc?ma-ltc=${maLtcSelected}&nien-khoa=${selectedYear}&hoc-ki=${selectedSemester}&ma-mh=${selectedSubject}`, {
-            method: 'GET'
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+              }
         }).then(res => {
             console.log(res.status);
             if (res.status === 200) {
@@ -81,11 +91,11 @@ export default function NhapDiem() {
     return (
         <div>
             <Header />
-            <div className="container-wrapper">
-                <div className='container'>
-                    <div>
-                        <label htmlFor="school-year">Năm học: </label>
-                        <select
+            <div className="container-wrapper-nhapdiem">
+                <div className='container-nhapdiem'>
+                    <div className='div-nhapdiem'>
+                        <label className='label-nhapdiem' htmlFor="school-year">Năm học: </label>
+                        <select className='select-nhapdiem'
                             id="school-year"
                             value={selectedYear}
                             onChange={(e) => {
@@ -99,18 +109,18 @@ export default function NhapDiem() {
                             }}
                         >
                             {nienKhoaList.map((year, index) => (
-                                <option key={index} value={year}>{year}</option>
+                                <option  key={index} value={year}>{year}</option>
                             ))}
                         </select>
                     </div>
-                    <div>
-                        <label htmlFor="semester">Học kì: </label>
+                    <div className='div-nhapdiem'>
+                        <label className='label-nhapdiem' htmlFor="semester">Học kì: </label>
                         <select
+                            className='select-nhapdiem'
                             id="semester"
                             value={selectedSemester}
                             onChange={(e) => {
                                 setSelectedSemester(parseInt(e.target.value));
-
                             }}
                         >
                             {filteredHocKiList.map((semester, index) => (
@@ -118,9 +128,10 @@ export default function NhapDiem() {
                             ))}
                         </select>
                     </div>
-                    <div>
-                        <label htmlFor="subject">Môn học: </label>
+                    <div className='div-nhapdiem'>
+                        <label className='label-nhapdiem' htmlFor="subject">Môn học: </label>
                         <select
+                        className='select-nhapdiem'
                             id="subject"
                             value={selectedSubject}
                             onChange={(e) => setSelectedSubject(e.target.value)}
@@ -130,10 +141,10 @@ export default function NhapDiem() {
                             ))}
                         </select>
                     </div>
-                    <button className='btn-taidssinhvien' onClick={handelCLickTaiDanhSachSinhVien}>Tải danh sách sinh viên</button>
+                    <button className='btn-taidssinhvien-nhapdiem' onClick={handelCLickTaiDanhSachSinhVien}>Tải danh sách sinh viên</button>
                 </div>
             </div>
-            <StudentTable data={listDiemSinhVienLtc} nienKhoa={selectedYear} hocKi={selectedSemester} monHoc={selectedSubject} maGv={maGv} updateStudentData={updateStudentData}/>
+            <StudentTable data={listDiemSinhVienLtc} nienKhoa={selectedYear} hocKi={selectedSemester} monHoc={selectedSubject} maGv={username} updateStudentData={updateStudentData} />
         </div>
     );
 }

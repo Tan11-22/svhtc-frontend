@@ -5,6 +5,8 @@ const Popup = ({ isOpen, handleClose, data, nienKhoa, hocKi, monHoc, maGv, updat
   const [diemCC, setDiemCC] = useState(data.DIEMCC);
   const [diemGK, setDiemGK] = useState(data.DIEMGK);
   const [diemCK, setDiemCK] = useState(data.DIEMCK);
+  const token = localStorage.getItem('token');
+  // const username = localStorage.getItem('username');
 
   useEffect(() => {
     setDiemCC(data.DIEMCC);
@@ -29,11 +31,12 @@ const Popup = ({ isOpen, handleClose, data, nienKhoa, hocKi, monHoc, maGv, updat
       DIEMTK: diemCC * 0.1 + diemGK * 0.3 + diemCK * 0.6,
       KETQUA: (diemCC * 0.1 + diemGK * 0.3 + diemCK * 0.6) > 4
     });
-    
+
     // call api update diem
     fetch(`api/thong-tin/giang-vien/cap-nhat-diem`, {
       method: 'POST',
       headers: {
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({

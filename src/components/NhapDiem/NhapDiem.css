@@ -1,4 +1,4 @@
-.container-wrapper {
+.container-wrapper-nhapdiem {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,7 +6,7 @@
     width: auto;
 }
 
-.container {
+.container-nhapdiem {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -17,24 +17,26 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.container label {
-    margin-right: 10px;
+.label-nhapdiem {
+    margin-right: 10px;     
     font-weight: bold;
     white-space: nowrap;
 }
 
-.container select {
+.select-nhapdiem {
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    width: auto;
+    font-size: 15px;
 }
 
-.container div {
+.div-nhapdiem {
     display: flex;
     align-items: center;
 }
 
-.btn-taidssinhvien{
+.btn-taidssinhvien-nhapdiem{
     margin-right: 2%;
     margin-left: auto; 
     padding: 10px 20px; 

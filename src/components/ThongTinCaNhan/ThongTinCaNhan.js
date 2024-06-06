@@ -5,13 +5,19 @@ import { useEffect, useState } from 'react'
 export default function ThongTinCaNhan() {
     console.log("abccccc");
     const [informationStudent, setInformationStudent] = useState();
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
 
     useEffect(() => {
-        fetch(`api/thong-tin/sinh-vien/thong-tin-ca-nhan?ma-sv=N15DCCN001`, {
+        fetch(`api/thong-tin/sinh-vien/thong-tin-ca-nhan?ma-sv=${username}`, {
             method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
         }).then(res => {
-            if(res.status === 200){
-                res.json().then(data =>{
+            if (res.status === 200) {
+                res.json().then(data => {
                     setInformationStudent(data);
                     console.log(data);
                 })
@@ -19,8 +25,8 @@ export default function ThongTinCaNhan() {
         }).catch(error => {
             console.error('Lỗi khi gọi API:', error);
         });
-    }, [])
-    
+    }, [token, username])
+
     return (
         <div>
             <div className="content-wrapper">

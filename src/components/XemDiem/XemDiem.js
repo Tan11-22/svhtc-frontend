@@ -5,22 +5,28 @@ import { useEffect, useState } from 'react';
 export default function XemDiem() {
   const [listDiem, setListDiem] = useState([]);
   const [thongKetDiem, setThongKeDiem] = useState([]);
+  const token = localStorage.getItem('token');
+  const username = localStorage.getItem('username');
   useEffect(() => {
-    fetch(`api/thong-tin/sinh-vien/xem-diem?ma-sv=N15DCCN002`, {
-      method: 'GET'
+    fetch(`api/thong-tin/sinh-vien/xem-diem?ma-sv=${username}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
     }).then(res => {
       if (res.status === 200) {
         res.json().then(data => {
           setListDiem(data);
           // console.log(data);
         })
-      } else if(res.status === 204){ // no content
+      } else if (res.status === 204) { // no content
         setListDiem([]);
       }
     }).catch(error => {
       console.error('Lỗi khi gọi API:', error);
     });
-  }, [])
+  }, [token, username])
 
   useEffect(() => {
     if (listDiem.length > 0) {
@@ -64,7 +70,7 @@ export default function XemDiem() {
           data={listDiem}
           summary={thongKetDiem[index]}
         />
-        
+
       ))}
     </div>
   );

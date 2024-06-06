@@ -66,24 +66,26 @@ img {
     height: 460px;
 }
 
-.more-info .info-title {
+.more-info01 .info-title01 {
     text-align: center;
+    padding-bottom: 1%;
 }
 
 .info-title {
     font-weight: 300;
 }
 
-.info-wrapper {
+.info-wrapper01 {
     display: flex;
     justify-content: center;
+    padding-bottom: 2%;
 }
 
-.info-option+.info-option {
+.info-option01+.info-option01 {
     margin-left: 100px;
 }
 
-.info-item:first-child {
+.info-item01:first-child {
     margin-bottom: 30px;
 }
 
@@ -145,20 +147,20 @@ img {
     border-radius: 20px;
 }
 
-.logo-meaning-wrapper {
+.logo-meaning-wrapper01 {
     width: 80%;
     margin: auto;
     margin-top: 50px;
     margin-bottom: 50px;
 }
 
-.logo-meaning {
+.logo-meaning01 {
     width: 100%;
     text-align: center;
     margin-bottom: 20px;
 }
 
-.logo-meaning-title {
+.logo-meaning-title01 {
     font-size: 24px;
     line-height: 25px;
     text-transform: uppercase;
@@ -166,23 +168,23 @@ img {
     font-weight: 600;
 }
 
-.logo-meaning-img {
+.logo-meaning-img01 {
     width: 72px;
     height: 92px;
 }
 
-.text-meaning {
+.text-meaning01 {
     background-color: #fde0e0;
     border-radius: 8px;
     padding: 16px;
 }
 
-.text-meaning-title {
+.text-meaning-title01 {
     margin: 0;
     margin-bottom: 20px;
 }
 
-.text-meaning-content {
+.text-meaning-content01 {
     margin: 0;
 }
 
