@@ -5,7 +5,7 @@ import { LOGIN_API_URL} from "../api/apiConfig";
 export const dangNhap = async (user) => {
     try {
         const response = await api.post(`${LOGIN_API_URL}login`, user);
-        if(response.status == 200) {
+        if(response.status === 200) {
             const token  = response.data.token;
             const username = response.data.user;
             console.log(token)

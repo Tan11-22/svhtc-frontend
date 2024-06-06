@@ -44,7 +44,7 @@ function NavbarMenu({ menuItems }) {
           <div className="right-nav-menu">
             <ul>
             <li >
-                <Link to={"#"}>
+                <Link to={"/thong-tin-ca-nhan"}>
                     <img className={user ?"icon-right":"icon-right an"} src={account} />
                 </Link>
             </li>
