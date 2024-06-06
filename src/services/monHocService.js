@@ -10,7 +10,7 @@ export const getMonHoc = async (start, size) => {
             size: size
           }
         });
-        // console.log(response.data);
+        console.log(response.data);
         return response.data; // Trả về dữ liệu từ API
       } catch (error) {
         console.error('Error fetching data:', error);
