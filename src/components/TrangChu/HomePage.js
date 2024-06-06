@@ -1,11 +1,21 @@
 import Header from '../Header/Header';
 import './HomePage.css'
+import NavBarMenu from '../NavBarMenu/NavBarMenu';
+import { useEffect, useState } from 'react';
+import  {menuItemsSV, menuItemsGV}  from '../../components/NavBarMenu/menu';
 
 export default function HomePage() {
-    
+   const [menuItems, setMenuItem] = useState([]);
+   useEffect(() => {
+    const userName = localStorage.getItem('username');
+    if(userName.startsWith("gv")){
+        setMenuItem(menuItemsGV)
+    } else setMenuItem(menuItemsSV)
+   }, [])
     return (
         <div className="content-wrapper">
             <Header/>
+            <NavBarMenu menuItems={menuItems}/>
             <div class='content-1'>
                 <div class="ad-img-wrapper">
                     <img class='responsive-img' src="https://portal.ptit.edu.vn/wp-content/uploads/2021/11/banner-web-triet-ly-giao-d%E1%BB%A5c.jpg" alt="Slide 2" />

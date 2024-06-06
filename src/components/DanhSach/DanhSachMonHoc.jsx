@@ -1,7 +1,7 @@
 
 import React,{useState, useEffect} from 'react'
 import "./DanhSach.css"
-import {getMonHoc, getSoLuongMonHoc, timMonHoc, xoaMonHoc } from '../../services/monHocService';
+import {getMonHoc, getSoLuongMonHoc, timMonHoc} from '../../services/monHocService';
 import Pagination from '../Pagination/Pagination';
 import add from "../../assets/add.png";
 import edit from "../../assets/edit.png";
@@ -11,6 +11,7 @@ import close from "../../assets/close.png";
 import FormMonHoc from '../Form62/FormMonHoc';
 import Loading from '../Loading/Loading';
 import FormUpdateMonHoc from '../Form62/FromUpdateMonHoc';
+import FormDeleteMonHoc from '../Form62/FormDeleteMonHoc';
 
 
 function DanhSachMonHoc() {
@@ -27,6 +28,9 @@ function DanhSachMonHoc() {
 
     const [openFormUpdateMonHoc, setOpenFormUpdateMonHoc] = useState(false);
     const [formValue, setFormValue] = useState(null);
+
+    const [openFormDeleteMonHoc, setOpenFormDeleteMonHoc] = useState(false);
+    const [formValueDelete, setFormValueDelete] = useState("");
 
     const [isSearch,setIsSearch] = useState(false)
     const [inputSearch, setInputSearch] =useState("")
@@ -102,6 +106,7 @@ function DanhSachMonHoc() {
     // load data khi thay đổi trang
     useEffect(()=>{
       if(size === 0 || page === -1 ) return;
+      console.log("check", page, size)
       const fetchData1 = async () => {
         try {
           const result2 = await getMonHoc(page*10,size);
@@ -118,18 +123,20 @@ function DanhSachMonHoc() {
 
 
     const handleDelete = (maMH) => {
-      console.log("Kết quả xoá môn học1 ", maMH.trim(), "abc")
-      const fetchData = async () => {
-        try {
-          const result1 = await xoaMonHoc(maMH.trim());
-          console.log("Kết quả xoá môn học", result1)
-          if(result1.code == 200) setIsRefresh(!isRefresh);
-          console.log("Kết quả :", isRefresh)
-        } catch (error) {
-        }
-      };
+      setFormValueDelete(maMH)
+      setOpenFormDeleteMonHoc(true);
+      // console.log("Kết quả xoá môn học1 ", maMH.trim(), "abc")
+      // const fetchData = async () => {
+      //   try {
+      //     const result1 = await xoaMonHoc(maMH.trim());
+      //     console.log("Kết quả xoá môn học", result1)
+      //     if(result1.code == 200) setIsRefresh(!isRefresh);
+      //     console.log("Kết quả :", isRefresh)
+      //   } catch (error) {
+      //   }
+      // };
     
-      fetchData();   
+      // fetchData();   
     }
     const handleUpdate = (monHoc) => {
         setFormValue(monHoc)
@@ -188,7 +195,7 @@ function DanhSachMonHoc() {
                     </tr>
                     </thead>
                     <tbody>
-                    {
+                    { 
                       danhSachMonHoc.map((val, key)=> {
                         return (
                           <tr key={key}>
@@ -210,7 +217,8 @@ function DanhSachMonHoc() {
                 {!isSearch ? 
                 <Pagination max = {totalPage} select={page} onPageChange={handlePageChange}/> : null}
     <FormMonHoc open={openFormMonHoc} onClose={()=>setOpenFormMonHoc(false)}/>
-    <FormUpdateMonHoc open={openFormUpdateMonHoc} onClose={() => setOpenFormUpdateMonHoc(false)} data={formValue}/>
+    <FormUpdateMonHoc open={openFormUpdateMonHoc} onClose={() => setOpenFormUpdateMonHoc(false)} data={formValue} refresh={() => setIsRefresh(!isRefresh)}/>
+      <FormDeleteMonHoc open={openFormDeleteMonHoc} onClose={() => setOpenFormDeleteMonHoc(false)} maMH={formValueDelete} refresh={() => setIsRefresh(!isRefresh)}/>
     </div>
   </div>
       

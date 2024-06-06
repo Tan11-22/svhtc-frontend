@@ -6,7 +6,8 @@ import check from "../../assets/check.png";
 import uncheck from "../../assets/unchecked.png";
 import closeltc from "../../assets/closeltc.png";
 import Loading from '../../components/Loading/Loading';
-
+import NavbarMenu from '../../components/NavBarMenu/NavBarMenu';
+import  {menuItemsSV}  from '../../components/NavBarMenu/menu';
 
 function DangKyLTC() {
     const [loading, setLoading] = useState(true);
@@ -129,6 +130,7 @@ function DangKyLTC() {
   return (
     <div>
         <Header/>
+        <NavbarMenu menuItems={menuItemsSV}/>
         <div className='card-body'>
             <div className='card-ltc-62'>
                 <div className='loc-input'>

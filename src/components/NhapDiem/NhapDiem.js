@@ -2,6 +2,8 @@ import './NhapDiem.css'
 import { useEffect, useState } from 'react';
 import Header from '../Header/Header'
 import StudentTable from './StudentTable';
+import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
+import NavbarMenu from '../NavBarMenu/NavBarMenu';
 export default function NhapDiem() {
     const [dataLtcTheoGv, setDataLtcTheoGv] = useState([]);
     const [selectedYear, setSelectedYear] = useState('');
@@ -91,6 +93,7 @@ export default function NhapDiem() {
     return (
         <div>
             <Header />
+            <NavbarMenu menuItems={menuItemsGV}/>
             <div className="container-wrapper-nhapdiem">
                 <div className='container-nhapdiem'>
                     <div className='div-nhapdiem'>

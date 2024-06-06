@@ -2,6 +2,8 @@ import './XemDiem.css'
 import GradeTable from './GradeTable';
 import Header from '../Header/Header'
 import { useEffect, useState } from 'react';
+import  {menuItemsSV}  from '../../components/NavBarMenu/menu';
+import NavbarMenu from '../NavBarMenu/NavBarMenu';
 export default function XemDiem() {
   const [listDiem, setListDiem] = useState([]);
   const [thongKetDiem, setThongKeDiem] = useState([]);
@@ -64,6 +66,7 @@ export default function XemDiem() {
   return (
     <div className="grade-table-list">
       <Header />
+      <NavbarMenu menuItems={menuItemsSV}/>
       {listDiem.map((listDiem, index) => (
         <GradeTable
           key={index}

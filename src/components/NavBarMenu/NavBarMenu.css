@@ -1,71 +1,91 @@
-  .nav-bar-menu nav {
+.nav-bar-menu nav {
+  display: flex; 
+  justify-content: center; 
+  background-color: #D30000;
+  padding: 0.5vw;
+  max-height: 3vw; /* Đặt chiều dài cố định là 3vw */
+  min-height: 3vw;
+}
 
-      display: flex; 
-      justify-content: center; 
-      background-color: #D30000;
-      padding: 0.5vw;
-      max-height: 3vw; /* Đặt chiều dài cố định là 3vw */
-      min-height: 3vw;
-    }
-    .left-nav-menu,
-    .right-nav-menu,
-    .center-nav-menu  {
-      display: flex; 
-      align-items: center;
-      
-    }
-    .left-nav-menu {
-      flex-grow: 1; /* Phần bên trái chiếm 15vw */
-      width: 15vw;
-      justify-content: center; 
-  }
+.left-nav-menu,
+.right-nav-menu,
+.center-nav-menu {
+  display: flex; 
+  align-items: center;
+}
 
-  .center-nav-menu {
-      flex-grow: 1; /* Phần ở giữa chiếm toàn bộ không gian còn lại */
-      justify-content: center; 
-  }
+.left-nav-menu {
+  flex-grow: 1; /* Phần bên trái chiếm 15vw */
+  width: 5vw;
+  justify-content: center; 
+}
 
-  .right-nav-menu {
-      flex-grow: 1; /* Phần bên phải chiếm 15vw */
-      width: 15vw;
-      justify-content: center; 
-  }
-    
-    .nav-bar-menu nav ul {
-      list-style-type: none;
-      padding: 0vw;
-      margin: 0vw;
-      display: flex; 
-      align-items: center; 
-    }
-    .nav-bar-menu nav li {
-      margin-right: 1.5vw;
-      font-size: 1.5vw;
-    }
-    .nav-bar-menu nav a {
-      text-decoration: none;
-      color: white; 
-      font-size: 1.5vw;
-     
-    } 
+.center-nav-menu {
+  flex-grow: 1; /* Phần ở giữa chiếm toàn bộ không gian còn lại */
+  justify-content: center; 
+}
 
+.right-nav-menu {
+  flex-grow: 1; /* Phần bên phải chiếm 5vw */
+  width: 5vw;
+  justify-content: flex-end; /* Đẩy nội dung sang bên phải */
+  margin-right: 1vw; /* Cách lề phải 2vw */
+}
 
-    .nav-bar-menu nav a img {
-      width: 2.5vw;
-      height: 2.5vw;
-    } 
-    .nav-bar-menu nav .center-nav-menu a {
-      height: 3.5vw;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 10px; /* Tùy chỉnh padding theo nhu cầu */
-      background-size: cover; /* hoặc background-size: contain; tùy thuộc vào yêu cầu */
-    } 
-    .nav-bar-menu nav .center-nav-menu a:hover {
-      background-color: white !important;
-      color: black !important;
-      background-size: auto;
-    }
+.nav-bar-menu nav ul {
+  list-style-type: none;
+  padding: 0vw;
+  margin: 0vw;
+  display: flex; 
+  align-items: center; 
+}
 
-    
+.nav-bar-menu nav li {
+  margin-right: 1.5vw;
+  font-size: 1.5vw;
+}
+
+.nav-bar-menu nav a {
+  text-decoration: none;
+  color: white; 
+  font-size: 1.5vw;
+}
+
+.nav-bar-menu nav a img {
+  width: 2.5vw;
+  height: 2.5vw;
+}
+.icon-right {
+  width: 2.5vw;
+  height: 2.5vw;
+  cursor: pointer;
+}
+.an {
+  display: none;
+}
+
+.nav-bar-menu nav .center-nav-menu a {
+  height: 3.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1vw; /* Tùy chỉnh padding theo nhu cầu */
+  background-size: cover; /* hoặc background-size: contain; tùy thuộc vào yêu cầu */
+  outline: none; /* Bỏ đường viền mặc định khi focus */
+}
+
+.nav-bar-menu nav .center-nav-menu a:hover,
+.nav-bar-menu nav .center-nav-menu a:focus,
+.nav-bar-menu nav .center-nav-menu a:focus-within {
+  background-color: white !important;
+  color: black !important;
+}
+
+.nav-bar-menu nav .center-nav-menu a.active {
+  background-color: white;
+  color: black;
+}
+
+.nav-bar-menu nav .center-nav-menu a {
+  cursor: pointer;
+}

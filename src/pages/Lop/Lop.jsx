@@ -1,9 +1,10 @@
 import React from 'react'
 import "../MonHoc/MonHoc.css"
 import Header from '../../components/Header/Header'
-
+import NavbarMenu from '../../components/NavBarMenu/NavBarMenu';
 import CardLeft from '../../components/CardLeft/CardLeft';
 import DanhSachLop from '../../components/DanhSach/DanhSachLop';
+import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
 function Lop() {
     const data = [
         { name: 'Môn học', image: "mon-hoc",act:0 },
@@ -13,6 +14,7 @@ function Lop() {
       return (
         <div>
           <Header/>
+          <NavbarMenu menuItems={menuItemsGV}/>
           <div className='card-body'>
             <div className='card-left'>
               <CardLeft title1={"Phòng giáo vụ"} menu={data}/>

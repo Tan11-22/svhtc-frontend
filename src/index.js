@@ -15,6 +15,12 @@ import NhapDiem from './components/NhapDiem/NhapDiem';
 import MonHoc from './pages/MonHoc/MonHoc';
 import Lop from './pages/Lop/Lop';
 import DangKyLTC from './pages/DangKyLTC/DangKyLTC';
+import QuanTriSinhVien from './components/QuanTriSinhVien/QuanTriSinhVien'
+import QuanTriGiangVien from './components/QuanTriGiangVien/QuanTriGiangVien'
+import LopTinChi from './components/LopTinChi/LopTinChi'
+import DSSVHocPhi from './components/HocPhi/DSSVHocPhi'
+import DanhSachHocPhi from './components/HocPhi/DanhSachHocPhi'
+
 
 export default function SVHTC() {
   return (
@@ -22,7 +28,7 @@ export default function SVHTC() {
       <Routes>
         <Route path="/" >
         <Route index element={<HomePage />} />
-          <Route path="hoc-phi" element={<HocPhi />} />
+          <Route path="hoc-phi" element={<DanhSachHocPhi />} />
           <Route path="xem-diem" element={<XemDiem />} />
           <Route path="return-payment" element={<Return />} />
           <Route path="thong-tin-ca-nhan" element={<ThongTinCaNhan />} />
@@ -31,6 +37,11 @@ export default function SVHTC() {
           <Route path="mon-hoc" element={<MonHoc/>} />
           <Route path="lop-hoc" element={<Lop/>} />
           <Route path="dang-ky-lop" element={<DangKyLTC/>} />
+          <Route path="sinh-vien" element={<QuanTriSinhVien/>} />
+          <Route path="giang-vien" element={<QuanTriGiangVien/>} />
+          <Route path="lop-tin-chi" element={<LopTinChi/>} />
+          <Route path="dong-hoc-phi" element={<HocPhi/>} />
+          <Route path="dssv-hoc-phi" element={<DSSVHocPhi/>} />
         </Route>
       </Routes>
     </BrowserRouter>

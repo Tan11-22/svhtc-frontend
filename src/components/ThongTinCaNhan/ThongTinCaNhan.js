@@ -1,10 +1,13 @@
 import './ThongTinCaNhan.css'
 import Header from '../Header/Header'
 import { useEffect, useState } from 'react'
+import NavbarMenu from '../NavBarMenu/NavBarMenu';
+import { menuItemsSV } from '../../components/NavBarMenu/menu';
 
 export default function ThongTinCaNhan() {
     console.log("abccccc");
     const [informationStudent, setInformationStudent] = useState();
+    const [srcImg, setSrcImg] = useState();
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
 
@@ -19,18 +22,39 @@ export default function ThongTinCaNhan() {
             if (res.status === 200) {
                 res.json().then(data => {
                     setInformationStudent(data);
-                    console.log(data);
+                    // console.log(data.HINHANH);
+                    fetch(`api/thong-tin/sinh-vien/get-img?name=${data.HINHANH}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                    }).then(res => {
+                        if (res.status === 200) {
+                            res.blob().then(blob => {
+                                // Tạo URL từ blob
+                                const imgUrl = URL.createObjectURL(blob);
+                                setSrcImg(imgUrl);
+                                console.log(imgUrl);
+                            })
+                        }
+                    }).catch(error => {
+                        console.error('Lỗi khi gọi API:', error);
+                    });
                 })
             }
         }).catch(error => {
             console.error('Lỗi khi gọi API:', error);
         });
+
+
     }, [token, username])
 
     return (
         <div>
             <div className="content-wrapper">
                 <Header />
+                <NavbarMenu menuItems={menuItemsSV} />
                 <div className="student-info-container">
                     <div className="student-info">
                         <div className='info'>
@@ -73,7 +97,7 @@ export default function ThongTinCaNhan() {
                             </div>
                         </div>
                         <div className="student-image-container">
-                            <img src='https://t4.ftcdn.net/jpg/05/31/42/21/360_F_531422192_dL2PaEjAGsbDuVn1g0duT557H1HCoNSQ.jpg' alt="Ảnh sinh viên" className="student-image" />
+                            <img src={srcImg} alt="Ảnh sinh viên" className="student-image" />
                         </div>
                     </div>
                     <div className="course-info">

@@ -2,9 +2,13 @@ import React, {useState, useEffect} from 'react'
 import "./Form.css"
 import close from '../../assets/close.png'
 import {chinhSuaMonHoc} from '../../services/monHocService';
-function FormUpdateMonHoc({open, onClose, data}) {
+function FormUpdateMonHoc({open, onClose, data, refresh}) {
   
-    const [monHoc, setMonHoc] = useState({});
+    const [monHoc, setMonHoc] = useState({maMH: "",
+                                  tenMH: "",
+                                  soTietLT: 0,
+                                  soTietTH: 0,
+                                  soTinChi: 0});
    
     useEffect(
       () => {
@@ -35,6 +39,11 @@ function FormUpdateMonHoc({open, onClose, data}) {
             try {
               const result = await chinhSuaMonHoc(monHoc);
               console.log("kết quả chỉnh sửa môn học", result);
+              if (result.code === 200) {
+                onClose();
+                setMonHoc({});
+                refresh();
+              }
             } catch (error) {
             }
           };
