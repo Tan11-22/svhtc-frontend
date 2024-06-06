@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import "./DangKyLTC.css"
+// import "./DangKyLTC.css"
 import {getDSLTCDeDK, getDanhSachThongTinLop, getDSLTCDaDK,dangKyLTC, huyDangKyLTC} from "../../services/dangKyLTC"
 import Header from '../../components/Header/Header'
 import check from "../../assets/check.png";

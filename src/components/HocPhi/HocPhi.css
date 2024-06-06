@@ -16,18 +16,18 @@
     height: auto;
 }
 
-.title-pay{
+.title-pay01{
     font-size: 20px;
     color: #3c763d;
 }
 
-.title-information{
+.title-information01{
     font-size: 20px;
 }
-.title-sinhvien{
+.title-sinhvien01{
     font-size: 15px;
 }
-.input-masv{
+.input-masv01{
     padding: 10px; /* Khoảng cách giữa viền và văn bản bên trong input */
     border: 1px solid #ccc; /* Viền của input */
     border-radius: 5px; /* Bo tròn các góc của input */
@@ -37,16 +37,16 @@
 }
 
 /* Tùy chỉnh style khi input được focus */
-.input-masv:focus {
+.input-masv01:focus {
     border-color: #007bff; /* Màu viền khi input được focus */
     box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); /* Hiển thị shadow khi input được focus */
 }
 
-.parent-btn-thanhtoan{
+.parent-btn-thanhtoan01{
     padding-top: 1%;
 }
 
-.btn-thanhtoan{
+.btn-thanhtoan01{
     margin-right: 2%;
     margin-left: auto; /* Đặt nút đăng nhập ở cuối dòng */
     padding: 10px 20px; /* Định dạng kích thước của nút */
@@ -59,19 +59,20 @@
     white-space: nowrap;
 }
 
-.footer-information{
+.footer-information01{
     padding: 10px 15px;
     background-color: #f5f5f5;
     border-top: 1px solid #ddd;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
     width: 80%;
-    margin-top: 3%;
+    margin-top: 1%;
 }
-.text-info{
+.text-info01{
     color: #31708f;
 }
-.notificationMa{
+.notificationMa01{
     color: red;
-    font-size: 15px
+    font-size: 15px;
+    margin-top: 1%;
 }

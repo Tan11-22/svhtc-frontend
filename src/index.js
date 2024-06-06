@@ -1,19 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+
 import './index.css';
-import App from './App';
+
 
 import Login from './pages/Login/Login';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom/client';
+import HocPhi from './components/HocPhi/HocPhi';
+import HomePage from './components/TrangChu/HomePage';
+import Return from './components/HocPhi/ReturnPayment/Return';
+import XemDiem from './components/XemDiem/XemDiem';
+import ThongTinCaNhan from './components/ThongTinCaNhan/ThongTinCaNhan';
+import NhapDiem from './components/NhapDiem/NhapDiem';
+// import reportWebVitals from './reportWebVitals';
 import MonHoc from './pages/MonHoc/MonHoc';
 import Lop from './pages/Lop/Lop';
 import DangKyLTC from './pages/DangKyLTC/DangKyLTC';
 import QuanTriSinhVien from './components/QuanTriSinhVien/QuanTriSinhVien'
 import QuanTriGiangVien from './components/QuanTriGiangVien/QuanTriGiangVien'
 import LopTinChi from './components/LopTinChi/LopTinChi'
-import HocPhi from './components/HocPhi/DanhSachHocPhi'
 import DSSVHocPhi from './components/HocPhi/DSSVHocPhi'
+import DanhSachHocPhi from './components/HocPhi/DanhSachHocPhi'
 
 
 export default function SVHTC() {
@@ -21,7 +27,12 @@ export default function SVHTC() {
     <BrowserRouter>
       <Routes>
         <Route path="/" >
-         
+        <Route index element={<HomePage />} />
+          <Route path="hoc-phi" element={<DanhSachHocPhi />} />
+          <Route path="xem-diem" element={<XemDiem />} />
+          <Route path="return-payment" element={<Return />} />
+          <Route path="thong-tin-ca-nhan" element={<ThongTinCaNhan />} />
+          <Route path="nhap-diem" element={<NhapDiem />} />
           <Route path="login" element={<Login/>} />
           <Route path="mon-hoc" element={<MonHoc/>} />
           <Route path="lop-hoc" element={<Lop/>} />
@@ -29,7 +40,7 @@ export default function SVHTC() {
           <Route path="sinh-vien" element={<QuanTriSinhVien/>} />
           <Route path="giang-vien" element={<QuanTriGiangVien/>} />
           <Route path="lop-tin-chi" element={<LopTinChi/>} />
-          <Route path="hoc-phi" element={<HocPhi/>} />
+          <Route path="dong-hoc-phi" element={<HocPhi/>} />
           <Route path="dssv-hoc-phi" element={<DSSVHocPhi/>} />
         </Route>
       </Routes>
@@ -37,11 +48,4 @@ export default function SVHTC() {
   );
 }
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <SVHTC/>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+root.render(<SVHTC />);

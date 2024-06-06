@@ -19,7 +19,7 @@ function QuanTriGiangVien() {
     { name: "Học phí", link: "/hoc-phi" }
   ];
   const rightMenu = [
-    { link: "#", icon: userIcon, alt: "iconthongtincanhan" }
+    { link: "/thong-tin-ca-nhan", icon: userIcon, alt: "iconthongtincanhan" }
   ];
   const [khoaList, setKhoaList] = useState([]);
   const [selectedKhoa, setSelectedKhoa] = useState('');
