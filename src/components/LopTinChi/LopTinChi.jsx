@@ -7,6 +7,7 @@ import '../Form036/Modal/Modal.css';
 import Header from '../Header/Header.jsx';
 import NavBarMenu from '../NavBarMenu/NavBarMenu.jsx'
 import { handleOpenDialog, handleCloseDialog, useForm } from './modalLTC.js';
+import Footer from '../../components/Footer/Footer';
 import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
 function LopTinChi() {
 
@@ -466,7 +467,8 @@ function LopTinChi() {
                 </div>
                 </div>
                 </div>
-            </div>        
+            </div>  
+                  
         </div>
     );
 }

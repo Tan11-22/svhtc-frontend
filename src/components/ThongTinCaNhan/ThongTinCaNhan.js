@@ -1,86 +1,126 @@
 import './ThongTinCaNhan.css'
 import Header from '../Header/Header'
+import { useEffect, useState } from 'react'
+import NavbarMenu from '../NavBarMenu/NavBarMenu';
+import { menuItemsSV } from '../../components/NavBarMenu/menu';
 
 export default function ThongTinCaNhan() {
+    console.log("abccccc");
+    const [informationStudent, setInformationStudent] = useState();
+    const [srcImg, setSrcImg] = useState();
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
+
+    useEffect(() => {
+        fetch(`api/thong-tin/sinh-vien/thong-tin-ca-nhan?ma-sv=${username}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        }).then(res => {
+            if (res.status === 200) {
+                res.json().then(data => {
+                    setInformationStudent(data);
+                    // console.log(data.HINHANH);
+                    fetch(`api/thong-tin/sinh-vien/get-img?name=${data.HINHANH}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                    }).then(res => {
+                        if (res.status === 200) {
+                            res.blob().then(blob => {
+                                // Tạo URL từ blob
+                                const imgUrl = URL.createObjectURL(blob);
+                                setSrcImg(imgUrl);
+                                console.log(imgUrl);
+                            })
+                        }
+                    }).catch(error => {
+                        console.error('Lỗi khi gọi API:', error);
+                    });
+                })
+            }
+        }).catch(error => {
+            console.error('Lỗi khi gọi API:', error);
+        });
+
+
+    }, [token, username])
+
     return (
         <div>
             <div className="content-wrapper">
                 <Header />
+                <NavbarMenu menuItems={menuItemsSV} />
                 <div className="student-info-container">
-                    <div className='content-1'>
-                        <div className="student-info">
+                    <div className="student-info">
+                        <div className='info'>
                             <h2>Thông tin sinh viên</h2>
                             <div className="info-row">
                                 <div className="info-label">Mã SV</div>
-                                <div className="info-value">N20DCCN073</div>
+                                <div className="info-value">{informationStudent ? informationStudent.MASV : ''}</div>
                             </div>
                             <div className="info-row">
                                 <div className="info-label">Họ và tên</div>
-                                <div className="info-value">Phạm Đức Thắng</div>
+                                <div className="info-value">{informationStudent ? informationStudent.HOTEN : ''}</div>
                             </div>
                             <div className="info-row">
                                 <div className="info-label">Ngày sinh</div>
-                                <div className="info-value">25/06/2002</div>
+                                <div className="info-value">{informationStudent ? informationStudent.NGAYSINH : ''}</div>
                             </div>
                             <div className="info-row">
                                 <div className="info-label">Giới tính</div>
-                                <div className="info-value">Nam</div>
+                                <div className="info-value">{informationStudent ? (informationStudent.PHAI ? "Nữ" : "Nam") : ''}</div>
                             </div>
                             <div className="info-row">
                                 <div className="info-label">Điện thoại</div>
-                                <div className="info-value">0975625496</div>
-                            </div>
-                            <div className="info-row">
-                                <div className="info-label">Số CMND/CCCD</div>
-                                <div className="info-value">037020010947</div>
+                                <div className="info-value">{informationStudent ? informationStudent.SDT : ''}</div>
                             </div>
                             <div className="info-row">
                                 <div className="info-label">Email</div>
-                                <div className="info-value">n20dccn073@student.ptithcm.edu.vn</div>
-                            </div>
-                            <div className="info-row">
-                                <div className="info-label">Nơi sinh</div>
-                                <div className="info-value">Ninh Bình</div>
-                            </div>
-                            <div className="info-row">
-                                <div className="info-label">Dân tộc</div>
-                                <div className="info-value">Kinh</div>
-                            </div>
-                            <div className="info-row">
-                                <div className="info-label">Tôn giáo</div>
-                                <div className="info-value">Không</div>
+                                <div className="info-value">{informationStudent ? informationStudent.EMAIL : ''}</div>
                             </div>
                             <div className="info-row">
                                 <div className="info-label">Hiện diện</div>
-                                <div className="info-value">Đang học</div>
+                                <div className="info-value">{informationStudent ? (informationStudent.DANGHIHOC ? "Đã nghỉ" : "Đang học") : ''}</div>
                             </div>
                             <div className="info-row">
                                 <div className="info-label">Hộ khẩu</div>
-                                <div className="info-value">Xã Khánh Hồng, Huyện Yên Khánh, Tỉnh Ninh Bình</div>
+                                <div className="info-value">{informationStudent ? informationStudent.DIACHI : ''}</div>
                             </div>
                             <div className="info-row">
                                 <div className="info-label">Đối tượng</div>
                                 <div className="info-value"></div>
                             </div>
                         </div>
+                        <div className="student-image-container">
+                            <img src={srcImg} alt="Ảnh sinh viên" className="student-image" />
+                        </div>
                     </div>
                     <div className="course-info">
                         <h2>Thông tin khóa học</h2>
                         <div className="info-row">
                             <div className="info-label">Lớp</div>
-                            <div className="info-value">D20CQCNPM01-N</div>
+                            <div className="info-value">{informationStudent ? informationStudent.MALOP : ''}</div>
                         </div>
                         <div className="info-row">
                             <div className="info-label">Ngành</div>
-                            <div className="info-value">Công nghệ phần mềm</div>
-                        </div>
-                        <div className="info-row">
-                            <div className="info-label">Chuyên ngành</div>
-                            <div className="info-value">Công nghệ thông tin</div>
+                            <div className="info-value">{informationStudent ? informationStudent.TENNGANH : ''}</div>
                         </div>
                         <div className="info-row">
                             <div className="info-label">Khoa</div>
-                            <div className="info-value">Công Nghệ Thông Tin 2</div>
+                            <div className="info-value">{informationStudent ? informationStudent.TENKHOA : ''}</div>
+                        </div>
+                        <div className="info-row">
+                            <div className="info-label">Bậc hệ đào tạo</div>
+                            <div className="info-value">{informationStudent ? informationStudent.TENHE : ''}</div>
+                        </div>
+                        <div className="info-row">
+                            <div className="info-label">Niên khóa</div>
+                            <div className="info-value">{informationStudent ? informationStudent.KHOAHOC : ''}</div>
                         </div>
                     </div>
                 </div>

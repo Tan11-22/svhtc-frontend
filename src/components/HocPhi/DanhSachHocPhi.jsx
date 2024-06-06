@@ -5,6 +5,7 @@ import { getHocPhiSV} from '../API036/apiThongTin.js';
 import NavbarMenu from '../NavBarMenu/NavBarMenu.jsx';
 import Header from '../Header/Header.jsx';
 import  {menuItemsSV}  from '../../components/NavBarMenu/menu';
+import Footer from '../../components/Footer/Footer';
 function DanhSachHocPhi() {
    
     const [hpList, setHocPhiList] = useState([]);

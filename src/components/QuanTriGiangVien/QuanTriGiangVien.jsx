@@ -8,6 +8,7 @@ import '../Form036/Modal/Modal.css';
 import Header from '../Header/Header.jsx';
 import NavBarMenu from '../NavBarMenu/NavBarMenu.jsx'
 import { handleOpenDialog, handleCloseDialog, previewImage ,useForm } from '../Form036/Modal/Modal.js';
+import Footer from '../../components/Footer/Footer';
 import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
 function QuanTriGiangVien() {
   
@@ -365,6 +366,7 @@ useEffect(() => {
           </div>
         </div>
       </div>
+      
     </div>
   );
 }

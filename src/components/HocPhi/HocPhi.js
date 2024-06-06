@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import logo from '../Logo/logoptithcm.png'
 import './HocPhi.css'
 export default function HocPhi() {
+    // console.log("abc");
     const [maSv, setMaSv] = useState('');
     const [maXacNhan, setMaXacNhan] = useState('');
     const [fillMaSv, setFillMaSv] = useState(true);
@@ -9,6 +10,8 @@ export default function HocPhi() {
     const [contentHocPhi, setContentHocPhi] = useState(true);
 
     const [captchaText, setCaptchaText] = useState('');
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
     const canvasRef = useRef(null);
 
     useEffect(() => {
@@ -63,6 +66,7 @@ export default function HocPhi() {
         fetch(`api/thanh-toan/payment/create-payment`, {
             method: 'POST',
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -98,13 +102,17 @@ export default function HocPhi() {
             const ctx = canvas.getContext('2d');
             initializeCaptcha(ctx);
             console.log("fail");
+            console.log(ctx);
             setContentHocPhi(true);
         }
     }
     const callAPIThongTinHocPhi = () => {
-        fetch(`api/thanh-toan/thong-tin-hoc-phi?ma-sv=${maSv}`, {
+
+
+        fetch(`api/thanh-toan/thong-tin-hoc-phi?ma-sv=${username}`, {
             method: 'GET',
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
             }
         })
@@ -128,6 +136,8 @@ export default function HocPhi() {
                     const ctx = canvas.getContext('2d');
                     initializeCaptcha(ctx);
                     // generateCode();
+                } else if (res.status === 503) {
+                    setContentHocPhi(false);
                 }
             })
             .catch(error => {
@@ -140,27 +150,27 @@ export default function HocPhi() {
         <div className="content-wrapper-hocphi">
             <div className="content-hocphi">
                 <img className="responsive-logo-hocphi" src={logo} alt='logo' />
-                <h3 className="title-pay">CỔNG THANH TOÁN HỌC PHÍ VÀ CÁC KHOẢN THU KHÁC PTITHCM - VNPAY</h3>
-                <h3 className='title-information'>Thông tin sinh viên</h3>
-                <h3 className='title-sinhvien'>Mã sinh viên (*)</h3>
-                <input className='input-masv' type='text' defaultValue={maSv} onChange={e => setMaSv(e.target.value)} />
-                <h3 className='title-sinhvien'>Mã xác nhận (*)</h3>
-                <input className='input-masv' type='text' defaultValue={maXacNhan} onChange={e => setMaXacNhan(e.target.value)} />
+                <h3 className="title-pay01">CỔNG THANH TOÁN HỌC PHÍ VÀ CÁC KHOẢN THU KHÁC PTITHCM - VNPAY</h3>
+                <h3 className='title-information01'>Thông tin sinh viên</h3>
+                <h3 className='title-sinhvien01'>Mã sinh viên (*)</h3>
+                <input className='input-masv01' type='text' defaultValue={maSv} onChange={e => setMaSv(e.target.value)} />
+                <h3 className='title-sinhvien01'>Mã xác nhận (*)</h3>
+                <input className='input-masv01' type='text' defaultValue={maXacNhan} onChange={e => setMaXacNhan(e.target.value)} />
                 <div>
                     <canvas ref={canvasRef} width={200} height={50}></canvas>
                 </div>
-                <div className='parent-btn-thanhtoan'>
-                    <button className='btn-thanhtoan' onClick={handlePayment}>Thanh toán</button>
+                <div className='parent-btn-thanhtoan01'>
+                    <button className='btn-thanhtoan01' onClick={handlePayment}>Thanh toán</button>
                 </div>
-                {!fillMaSv && <h3 className='notificationMa'>Vui lòng nhập mã sinh viên</h3>}
-                {!fillMaXN && fillMaSv && <h3 className='notificationMa'>Vui lòng nhập mã xác nhận</h3>}
-                {!contentHocPhi && fillMaSv && fillMaXN && <h3 className='notificationMa'>Không có thông tin</h3>}
-                <div className='footer-information'>
-                    <p className="h6 text-info">Cơ sở Quận 1: 11 Nguyễn Đình Chiểu, Phường Đa Kao, Quận 1, TP. Hồ Chí Minh</p>
-                    <p className="h6 text-info ">Cơ sở Quận 9: Đường Man Thiện, Phường Hiệp Phú, Quận 9, TP. Hồ Chí Minh</p>
-                    <p className="h6 text-info ">Email: hvbcvthcm@ptithcm.edu.vn</p>
-                    <p className="h6 text-info ">Điện thoại: (028) 38.295.258</p>
-                    <p className="h6 text-info ">Fax: (028) 39.105.51</p>
+                {!fillMaSv && <h3 className='notificationMa01'>Vui lòng nhập mã sinh viên</h3>}
+                {!fillMaXN && fillMaSv && <h3 className='notificationMa01'>Vui lòng nhập mã xác nhận</h3>}
+                {!contentHocPhi && fillMaSv && fillMaXN && <h3 className='notificationMa01'>Không có thông tin</h3>}
+                <div className='footer-information01'>
+                    <p className="h6 text-info01">Cơ sở Quận 1: 11 Nguyễn Đình Chiểu, Phường Đa Kao, Quận 1, TP. Hồ Chí Minh</p>
+                    <p className="h6 text-info01">Cơ sở Quận 9: Đường Man Thiện, Phường Hiệp Phú, Quận 9, TP. Hồ Chí Minh</p>
+                    <p className="h6 text-info01">Email: hvbcvthcm@ptithcm.edu.vn</p>
+                    <p className="h6 text-info01">Điện thoại: (028) 38.295.258</p>
+                    <p className="h6 text-info01">Fax: (028) 39.105.51</p>
                 </div>
             </div>
         </div>

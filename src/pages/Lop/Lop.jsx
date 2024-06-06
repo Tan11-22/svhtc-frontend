@@ -5,6 +5,7 @@ import NavbarMenu from '../../components/NavBarMenu/NavBarMenu';
 import CardLeft from '../../components/CardLeft/CardLeft';
 import DanhSachLop from '../../components/DanhSach/DanhSachLop';
 import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
+import Footer from '../../components/Footer/Footer';
 function Lop() {
     const data = [
         { name: 'Môn học', image: "mon-hoc",act:0 },
@@ -23,6 +24,7 @@ function Lop() {
                 <DanhSachLop/>
             </div>
           </div>
+          <Footer/>
         </div>
       )
 }

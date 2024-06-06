@@ -5,6 +5,7 @@ import userIcon from '../../assets/user.png';
 import { getDSSVHocPhi} from '../API036/apiThongTin.js';
 import NavbarMenu from '../NavBarMenu/NavBarMenu.jsx';
 import Header from '../Header/Header.jsx';
+import Footer from '../../components/Footer/Footer';
 import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
 function XemHocPhi() {
     const [hpList, setHocPhiList] = useState([]);
@@ -74,6 +75,7 @@ function XemHocPhi() {
             </div>
         </div>
         </div>
+        
     </div>
   )
 }

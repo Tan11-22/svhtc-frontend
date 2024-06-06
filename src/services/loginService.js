@@ -5,12 +5,14 @@ import { LOGIN_API_URL} from "../api/apiConfig";
 export const dangNhap = async (user) => {
     try {
         const response = await api.post(`${LOGIN_API_URL}login`, user);
-        if(response.status == 200) {
+        if(response.status === 200) {
             const token  = response.data.token;
             const username = response.data.user;
+            const role = response.data.role;
             console.log(token)
             localStorage.setItem('token', token); 
             localStorage.setItem("username",username)
+            localStorage.setItem("role",role)
         }
         // Lưu trữ token vào localStorage
         return response;

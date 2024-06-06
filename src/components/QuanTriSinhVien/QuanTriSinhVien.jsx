@@ -9,6 +9,7 @@ import NavBarMenu from '../NavBarMenu/NavBarMenu.jsx'
 import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
 import { handleOpenDialog, handleCloseDialog, previewImage ,useForm,formatDate } from '../Form036/Modal/Modal.js';
 import { getDanhSachLop ,getStudentsByClassId,addNewStudent,updateStudent,DeleteStudent,fetchStudentImage} from '../API036/apiThongTin.js';
+import Footer from '../../components/Footer/Footer';
 function QuanTriSinhVien() {
   
     const [lopList, setLopList] = useState([]);
@@ -370,6 +371,7 @@ function QuanTriSinhVien() {
         </div>
         
       </div>
+
     </div>
   )
 }

@@ -11,12 +11,15 @@ function NavbarMenu({ menuItems }) {
   const location = useLocation();
   const [activeItem, setActiveItem] = useState(location.pathname);
   const user = localStorage.getItem("username")
+  const role = localStorage.getItem("role")
+  console.log(role)
   const handleClick = (link) => {
     setActiveItem(link);
   };
   const handleClickLog = () =>{
     if(user) {
       localStorage.removeItem("username")
+      localStorage.removeItem("role")
     } 
     navigate("/login")
   }
@@ -44,8 +47,8 @@ function NavbarMenu({ menuItems }) {
           <div className="right-nav-menu">
             <ul>
             <li >
-                <Link to={"#"}>
-                    <img className={user ?"icon-right":"icon-right an"} src={account} />
+                <Link to={"/thong-tin-ca-nhan"}>
+                    <img className={(role === "SINHVIEN") ?"icon-right":"icon-right an"} src={account} />
                 </Link>
             </li>
                     

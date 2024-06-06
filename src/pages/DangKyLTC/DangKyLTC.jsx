@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import "./DangKyLTC.css"
+// import "./DangKyLTC.css"
 import {getDSLTCDeDK, getDanhSachThongTinLop, getDSLTCDaDK,dangKyLTC, huyDangKyLTC} from "../../services/dangKyLTC"
 import Header from '../../components/Header/Header'
 import check from "../../assets/check.png";
@@ -8,6 +8,7 @@ import closeltc from "../../assets/closeltc.png";
 import Loading from '../../components/Loading/Loading';
 import NavbarMenu from '../../components/NavBarMenu/NavBarMenu';
 import  {menuItemsSV}  from '../../components/NavBarMenu/menu';
+import Footer from '../../components/Footer/Footer';
 
 function DangKyLTC() {
     const [loading, setLoading] = useState(true);
@@ -241,9 +242,10 @@ function DangKyLTC() {
                   </table>
                 </div>
                 
-
+                        
             </div>
         </div>
+        <Footer/>
     </div>
   )
 }
