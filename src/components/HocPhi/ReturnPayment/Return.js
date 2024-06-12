@@ -4,6 +4,7 @@ import './Return.css';
 export default function Return() {
     // State để lưu trữ giá trị từ URL
     const [urlParams, setUrlParams] = useState(null);
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         // Lấy URL hiện tại khi component được render lần đầu tiên
@@ -35,7 +36,8 @@ export default function Return() {
         fetch(`/api/thanh-toan/cap-nhat-trang-thai-hoc-phi`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 "maSV": maSV,

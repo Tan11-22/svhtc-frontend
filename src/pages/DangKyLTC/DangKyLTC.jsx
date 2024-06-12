@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-// import "./DangKyLTC.css"
+import "./DangKyLTC.css"
 import {getDSLTCDeDK, getDanhSachThongTinLop, getDSLTCDaDK,dangKyLTC, huyDangKyLTC} from "../../services/dangKyLTC"
 import Header from '../../components/Header/Header'
 import check from "../../assets/check.png";
@@ -55,8 +55,8 @@ function DangKyLTC() {
         () => {
             const fetchData = async () => {
                 const maSV = localStorage.getItem('username');
-                // console.log('maSV:', maSV);
-                // console.log('lop:', lop);
+                console.log('maSV:', maSV);
+                console.log('lop:', lop);
                 try {
                     if(lop!== "" && maSV){
                         const result = await getDSLTCDeDK(lop.trim(),maSV);

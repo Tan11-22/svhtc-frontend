@@ -216,7 +216,7 @@ function DanhSachMonHoc() {
                   </table>
                 {!isSearch ? 
                 <Pagination max = {totalPage} select={page} onPageChange={handlePageChange}/> : null}
-    <FormMonHoc open={openFormMonHoc} onClose={()=>setOpenFormMonHoc(false)}/>
+    <FormMonHoc open={openFormMonHoc} onClose={()=>setOpenFormMonHoc(false)} refresh={() => setIsRefresh(!isRefresh)}/>
     <FormUpdateMonHoc open={openFormUpdateMonHoc} onClose={() => setOpenFormUpdateMonHoc(false)} data={formValue} refresh={() => setIsRefresh(!isRefresh)}/>
       <FormDeleteMonHoc open={openFormDeleteMonHoc} onClose={() => setOpenFormDeleteMonHoc(false)} maMH={formValueDelete} refresh={() => setIsRefresh(!isRefresh)}/>
     </div>

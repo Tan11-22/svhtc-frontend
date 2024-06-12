@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import "./DanhSach.css"
-import {getLopHoc,getSoLuongLopHoc } from '../../services/lopService';
+import {getLopHoc,getSoLuongLopHoc,timLopHoc } from '../../services/lopService';
 import Pagination from '../Pagination/Pagination';
 import add from "../../assets/add.png";
 import edit from "../../assets/edit.png";
@@ -8,6 +8,9 @@ import bin from "../../assets/bin.png";
 import search from "../../assets/search.png";
 import close from "../../assets/close.png";
 import FormMonHoc from '../Form62/FormMonHoc';
+import FormThemLop from '../Form62/FormThemLop';
+import FormDeleteLop from '../Form62/FormDeleteLop';
+import FormUpdateLop from '../Form62/FormUpdateLop';
 
 function DanhSachLop() {
     const [danhSachLop,setDanhSachLop] = useState(null);
@@ -19,10 +22,16 @@ function DanhSachLop() {
     const [page,setPage] = useState(-1);
     const [size, setSize] = useState(0);
 
-    const [openFormMonHoc, setOpenFormMonHoc] = useState(false);
+    const [openFormThemLop, setOpenFormThemLop] = useState(false);
+    const [openFormXoaLop, setOpenFormXoaLop] = useState(false);
+    const [formValueDelete, setFormValueDelete] = useState("");
+    const [openFormSuaLop, setOpenFormSuaLop] = useState(false);
+    const [formValueUpdate, setFormValueUpdate] = useState({});
 
     const [isSearch,setIsSearch] = useState(false)
     const [inputSearch, setInputSearch] =useState("")
+
+    const [isRefresh, setIsRefresh] = useState(false)
 
     const handlePageChange = (newPage)=> {
       if(isNaN(newPage)) return;
@@ -34,8 +43,8 @@ function DanhSachLop() {
       setIsSearch(true);
       const fetchData = async () => {
         try {
-          // const result2 = await timMonHoc(inputSearch);
-          // setDanhSachLop(result2.data);
+          const result2 = await timLopHoc(inputSearch);
+          setDanhSachLop(result2.data);
         } catch (error) {
           setError(error);
           setLoading(false);
@@ -49,8 +58,8 @@ function DanhSachLop() {
       setIsSearch(false);
       const fetchData = async () => {
         try {
-          // const result2 = await getMonHoc(page*10,size);
-          // setDanhSachMH(result2.data);
+          const result2 = await getLopHoc(page*10,size);
+          setDanhSachLop(result2.data);
         } catch (error) {
           setError(error);
           setLoading(false);
@@ -64,7 +73,7 @@ function DanhSachLop() {
             try {
               const result1 = await getSoLuongLopHoc();
               setTotalLop(result1.data);
-              
+              console.log("Check")
             } catch (error) {
               setError(error);
               setLoading(false);
@@ -72,14 +81,18 @@ function DanhSachLop() {
           };
         
         fetchData();       
-    },[]);
+    },[isRefresh]);
 
 
     useEffect(()=>{
-      
+      if(totalLop - 10*page == 0) {
+        setPage(page-1)
+      } else {
+        setPage(0)
+      }
       setTotalPage(Math.ceil(totalLop/10));
       setSize((totalLop - 10*page) > 10 ? 10 : (totalLop - 10*page));
-      setPage(0);
+      
     },[totalLop]);
 
 
@@ -100,24 +113,16 @@ function DanhSachLop() {
       };
       fetchData1(); 
       // console.log("check data", danhSachMonHoc); 
-    },[page]);
+    },[page,totalLop]);
 
     const handleEdit=(monHoc) => {
-
+      setFormValueUpdate(monHoc)
+      setOpenFormSuaLop(true)
     };
 
-    const handleDelete = (maMH) => {
-      console.log("Kết quả xoá môn học1 ", maMH.trim(), "abc")
-      const fetchData = async () => {
-        try {
-          // const result1 = await xoaMonHoc(maMH.trim());
-          // console.log("Kết quả xoá môn học", result1)
-          
-        } catch (error) {
-        }
-      };
-    
-      fetchData();   
+    const handleDelete = (maLop) => {
+      setFormValueDelete(maLop)
+      setOpenFormXoaLop(true);  
     }
 
 
@@ -155,7 +160,7 @@ function DanhSachLop() {
         
           <div className='title-dsmh'>
             <p >Danh sách lớp học</p> 
-             <button onClick={()=> setOpenFormMonHoc(true)}>
+             <button onClick={()=> setOpenFormThemLop(true)}>
               <img src={add}></img>
              </button>
           </div>
@@ -184,8 +189,8 @@ function DanhSachLop() {
                             <th className='col-2'>{val.tenHe}</th>
                             <th className='col-2'>{val.tenKhoa}</th>
                             <th className='col-4'>
-                              <img src={edit}/>
-                              <img src={bin} onClick={()=>handleDelete(val.monHoc.maMH)}/>
+                              <img src={edit} onClick={()=> handleEdit(val)}/>
+                              <img src={bin} onClick={()=>handleDelete(val.maLop)}/>
                             </th>
                           </tr>
                         )
@@ -195,9 +200,13 @@ function DanhSachLop() {
                   </table>
                 {!isSearch ? 
                 <Pagination max = {totalPage} select={page} onPageChange={handlePageChange}/> : null}
-    <FormMonHoc open={openFormMonHoc}
-      onClose={()=>setOpenFormMonHoc(false)}
+    <FormThemLop open={openFormThemLop}
+      onClose={()=>setOpenFormThemLop(false)
+      }
+      refresh={()=> setIsRefresh(!isRefresh)}
     />
+    <FormDeleteLop open={openFormXoaLop} onClose={() => setOpenFormXoaLop(false)} maLop={formValueDelete} refresh={() => setIsRefresh(!isRefresh)}/>
+    <FormUpdateLop open={openFormSuaLop} onClose={() => setOpenFormSuaLop(false)} data={formValueUpdate} refresh={() => setIsRefresh(!isRefresh)}/>
     </div>
   </div>
       

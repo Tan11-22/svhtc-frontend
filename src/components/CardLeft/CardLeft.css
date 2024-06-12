@@ -1,6 +1,7 @@
 .menu-li img {
     width: 30px;
     height: 30px;
+    margin: auto 0 auto 0;
 }
 
 .title-card {
@@ -25,8 +26,9 @@
     justify-content: space-around;
     height: 70px;
     width: 100%;
-    align-content: center;
     flex-wrap: wrap;
+    align-content: center;
+    
 }
 
 .menu-li p {
