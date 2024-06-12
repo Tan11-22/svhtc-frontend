@@ -35,7 +35,7 @@ function DanhSachHocPhi() {
                 <div className='cart-1-036'>
                 </div>  
                
-                <div class="table-container-036">
+                <div className="table-container-036">
                 <table>
                 <thead>
                     <tr>

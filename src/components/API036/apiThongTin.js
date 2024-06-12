@@ -27,7 +27,7 @@ export const findStudentByClassId = async (masv) => {
 
 export const DeleteStudent = async (masv) => {
     try {
-        const response = await api.get(`${SINH_VIEN_API_URL}/xoa-sinh-vien`, {
+        const response = await api.get(`${SINH_VIEN_API_URL}xoa-sinh-vien`, {
             params: { 'ma-sv': masv},
         });
         return response.data;
@@ -39,7 +39,7 @@ export const DeleteStudent = async (masv) => {
 
 export const getStudentsByClassId = async (classId) => {
     try {
-        const response = await api.get(`${SINH_VIEN_API_URL}/danh-sach-sv-lop`, {
+        const response = await api.get(`${SINH_VIEN_API_URL}danh-sach-sv-lop`, {
             params: { 'ma-lop': classId.trim()},
         });
         return response.data;
@@ -66,7 +66,7 @@ export const addNewStudent = async (sinhVien, avatarAdd) => {
     formData.append('img', avatarAdd);
 
     try {
-        const response = await api.post(`${SINH_VIEN_API_URL}/them-sinh-vien-moi`, formData, {
+        const response = await api.post(`${SINH_VIEN_API_URL}them-sinh-vien-moi`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -105,12 +105,27 @@ export const getHocPhiSV = async (masv) => {
         throw error;
     }
 };
-export const getDSSVHocPhi = async () => {
+export const getDSSVHocPhi = async (nienkhoa,hocki) => {
     try {
-        const response = await api.get(`${HOC_PHI_API_URL}xem-dssv-hoc-phi`);
+        const response = await api.get(`${HOC_PHI_API_URL}xem-dssv-hoc-phi`,{
+            params: { 
+                'nienkhoa': nienkhoa,
+                'hocki':hocki
+            },
+           
+        });
         return response.data;
     } catch (error) {
         console.error('Error fetching the students dssvhp:', error);
         throw error;
+    }
+};
+export const getDanhSachNienKhoa = async () => {
+    try {
+        const response = await api.get(`${HOC_PHI_API_URL}loc-nien-khoa`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching the list of Khoa:', error);
+        throw error; // Optionally, rethrow the error to handle it in the component
     }
 };
