@@ -60,7 +60,7 @@
     color: #000;
     cursor: pointer;
   }
-  
+/*   
   .custom-select::before,
   .custom-select::after {
     --size: 0.3rem;
@@ -83,7 +83,7 @@
     border-top: var(--size) solid black;
     top: 55%;
   }
-  
+   */
 .card-dsltc-62 {
     margin: 20px auto 20px auto;
     width: 1100px;
