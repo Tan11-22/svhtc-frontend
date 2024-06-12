@@ -38,3 +38,15 @@ export const resetPass = async (data) => {
         throw error;
     }
 }
+
+export const doiMatKhau = async (data) => {
+    try {
+        const response = await api.post(`${LOGIN_API_URL}thay-doi-mat-khau`, 
+        data
+        );
+        return response.data
+    } catch (error) {
+        console.error('Error during reset password', error);
+        throw error;
+    }
+}

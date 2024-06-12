@@ -7,7 +7,8 @@ import  {menuItemsSV, menuItemsGV}  from '../../components/NavBarMenu/menu';
 export default function HomePage() {
    const [menuItems, setMenuItem] = useState([]);
    useEffect(() => {
-    const role = localStorage.getItem('role');
+    
+    const role = localStorage.getItem("role")
     if(role === "GIANGVIEN"){
         setMenuItem(menuItemsGV)
     } else if(role === "SINHVIEN") {setMenuItem(menuItemsSV)} else setMenuItem([]);

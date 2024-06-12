@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import "./Form.css"
 import close from '../../assets/close.png'
 import {themMonHoc} from '../../services/monHocService';
-function FormMonHoc({open, onClose}) {
+function FormMonHoc({open, onClose, refresh}) {
     const [monHoc, setMonHoc] = useState({});
 
     const handleChange = (event) => {
@@ -17,12 +17,20 @@ function FormMonHoc({open, onClose}) {
             try {
               const result2 = await themMonHoc(monHoc);
               console.log("kết quả thêm môn học", result2);
+              if(result2.code === 200) {
+                refresh()
+                
+                alert("Thêm môn học thành công!")
+                handleClose();
+              } else {
+                alert(result2.status)
+              }
             } catch (error) {
             }
           };
         
         fetchData();
-        handleClose();
+       
       }
       const handleClose = () => {
         onClose();
