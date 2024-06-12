@@ -20,7 +20,7 @@ export default function XemDiem() {
       if (res.status === 200) {
         res.json().then(data => {
           setListDiem(data);
-          // console.log(data);
+          console.log(data);
         })
       } else if (res.status === 204) { // no content
         setListDiem([]);

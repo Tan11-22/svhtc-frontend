@@ -11,7 +11,7 @@ export default function HomePage() {
     const role = localStorage.getItem("role")
     if(role === "GIANGVIEN"){
         setMenuItem(menuItemsGV)
-    } else setMenuItem(menuItemsSV)
+    } else if(role === "SINHVIEN") {setMenuItem(menuItemsSV)} else setMenuItem([]);
    }, [])
     return (
         <div className="content-wrapper">

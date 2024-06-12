@@ -1,15 +1,22 @@
-import './NhapDiem.css'
+import './NhapDiem.css';
 import { useEffect, useState } from 'react';
-import Header from '../Header/Header'
+import Header from '../Header/Header';
 import StudentTable from './StudentTable';
-import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
+import { menuItemsGV } from '../../components/NavBarMenu/menu';
 import NavbarMenu from '../NavBarMenu/NavBarMenu';
+
 export default function NhapDiem() {
     const [dataLtcTheoGv, setDataLtcTheoGv] = useState([]);
     const [selectedYear, setSelectedYear] = useState('');
     const [selectedSemester, setSelectedSemester] = useState();
     const [selectedSubject, setSelectedSubject] = useState('');
+    const [selectedGroup, setSelectedGroup] = useState();
     const [listDiemSinhVienLtc, setListDiemSinhVienLtc] = useState([]);
+
+    // State cho các danh sách lọc
+    const [filteredHocKiList, setFilteredHocKiList] = useState([]);
+    const [filteredMonHocList, setFilteredMonHocList] = useState([]);
+    const [filteredNhomList, setFilteredNhomList] = useState([]);
 
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
@@ -28,57 +35,87 @@ export default function NhapDiem() {
                     setSelectedYear(data[0].NIENKHOA);
                     setSelectedSemester(data[0].HOCKI);
                     setSelectedSubject(data[0].MAMH);
-                })
-            }
-        }).catch(error => {
-            console.error('Lỗi khi gọi API:', error);
-        });
-    }, [username, token]) // khi nào mã gv thay đổi thì api đc call lại
-    // Lọc ds năm học
-    const nienKhoaList = [...new Set(dataLtcTheoGv.map(item => item.NIENKHOA))];
-
-
-    // Lọc ds học kì dựa trên học kì
-    const filteredHocKiList = [...new Set(dataLtcTheoGv.filter(item => item.NIENKHOA === selectedYear).map(item => item.HOCKI))];
-
-
-    //Lọc ds môn học dựa trên năm học và học kì
-    // Lọc danh sách môn học dựa trên năm học và học kỳ, loại bỏ các mục trùng lặp
-    const filteredMonHocList = [...new Map(
-        dataLtcTheoGv
-            .filter(item => item.NIENKHOA === selectedYear && item.HOCKI === selectedSemester)
-            .map(item => [item.MAMH, item])
-    ).values()];
-
-    const handelCLickTaiDanhSachSinhVien = () => {
-        var maLtcSelected = '';
-        for (let i = 0; i < dataLtcTheoGv.length; i++) {
-            if (dataLtcTheoGv[i].NIENKHOA === selectedYear && dataLtcTheoGv[i].HOCKI === selectedSemester && dataLtcTheoGv[i].MAMH === selectedSubject) {
-                console.log(dataLtcTheoGv[i].MALTC);
-                maLtcSelected = dataLtcTheoGv[i].MALTC;
-                break;
-            }
-        }
-
-        // call api
-        fetch(`api/thong-tin/giang-vien/danh-sach-sinh-vien-ltc?ma-ltc=${maLtcSelected}&nien-khoa=${selectedYear}&hoc-ki=${selectedSemester}&ma-mh=${selectedSubject}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-              }
-        }).then(res => {
-            console.log(res.status);
-            if (res.status === 200) {
-                res.json().then(data => {
-                    setListDiemSinhVienLtc(data);
+                    setSelectedGroup(data[0].NHOM);
                     console.log(data);
                 })
             }
         }).catch(error => {
             console.error('Lỗi khi gọi API:', error);
         });
-        // console.log(listSinhVienLtc);
+    }, [username, token]);
+
+    // Lọc danh sách năm học
+    const nienKhoaList = [...new Set(dataLtcTheoGv.map(item => item.NIENKHOA))];
+
+    // Cập nhật danh sách học kỳ khi selectedYear thay đổi
+    useEffect(() => {
+        if (selectedYear) {
+            const hocKiList = [...new Set(dataLtcTheoGv.filter(item => item.NIENKHOA === selectedYear).map(item => item.HOCKI))];
+            setFilteredHocKiList(hocKiList);
+            if (!hocKiList.includes(selectedSemester)) {
+                setSelectedSemester(hocKiList[0]);
+            }
+        }
+    }, [selectedYear]);
+
+    // Cập nhật danh sách môn học khi selectedYear hoặc selectedSemester thay đổi
+    useEffect(() => {
+        if (selectedYear && selectedSemester) {
+            const monHocList = [...new Map(
+                dataLtcTheoGv
+                    .filter(item => item.NIENKHOA === selectedYear && item.HOCKI === selectedSemester)
+                    .map(item => [item.MAMH, item])
+            ).values()];
+            setFilteredMonHocList(monHocList);
+            if (!monHocList.find(item => item.MAMH === selectedSubject)) {
+                setSelectedSubject(monHocList[0]?.MAMH || '');
+            }
+        }
+    }, [selectedYear, selectedSemester]);
+
+    // Cập nhật danh sách nhóm khi selectedYear, selectedSemester hoặc selectedSubject thay đổi
+    useEffect(() => {
+        if (selectedYear && selectedSemester && selectedSubject) {
+            const nhomList = [...new Map(
+                dataLtcTheoGv
+                    .filter(item => item.NIENKHOA === selectedYear && item.HOCKI === selectedSemester && item.MAMH === selectedSubject)
+                    .map(item => [item.NHOM, item])
+            ).values()];
+            setFilteredNhomList(nhomList);
+            if (!nhomList.find(item => item.NHOM === selectedGroup)) {
+                setSelectedGroup(nhomList[0]?.NHOM || 0);
+            }
+        }
+    }, [selectedYear, selectedSemester, selectedSubject]);
+
+    const handelCLickTaiDanhSachSinhVien = () => {
+        let maLtcSelected = '';
+        for (let i = 0; i < dataLtcTheoGv.length; i++) {
+            if (dataLtcTheoGv[i].NIENKHOA === selectedYear && dataLtcTheoGv[i].HOCKI === selectedSemester 
+                && dataLtcTheoGv[i].MAMH === selectedSubject && parseInt(dataLtcTheoGv[i].NHOM) === parseInt(selectedGroup) ) {
+                maLtcSelected = dataLtcTheoGv[i].MALTC;
+                break;
+            }
+        }
+        console.log("maltc" + maLtcSelected);
+        fetch(`api/thong-tin/giang-vien/danh-sach-sinh-vien-ltc?ma-ltc=${maLtcSelected}&nien-khoa=${selectedYear}&hoc-ki=${selectedSemester}&ma-mh=${selectedSubject}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        }).then(res => {
+            if (res.status === 200) {
+                res.json().then(data => {
+                    setListDiemSinhVienLtc(data);
+                    console.log(data);
+                })
+            } else if (res.status === 204) {
+                setListDiemSinhVienLtc([]);
+            }
+        }).catch(error => {
+            console.error('Lỗi khi gọi API:', error);
+        });
     }
 
     const updateStudentData = (updatedStudent) => {
@@ -89,11 +126,10 @@ export default function NhapDiem() {
         );
     };
 
-
     return (
         <div>
             <Header />
-            <NavbarMenu menuItems={menuItemsGV}/>
+            <NavbarMenu menuItems={menuItemsGV} />
             <div className="container-wrapper-nhapdiem">
                 <div className='container-nhapdiem'>
                     <div className='div-nhapdiem'>
@@ -101,18 +137,10 @@ export default function NhapDiem() {
                         <select className='select-nhapdiem'
                             id="school-year"
                             value={selectedYear}
-                            onChange={(e) => {
-                                setSelectedYear(e.target.value);
-                                // Đặt lại học kỳ về giá trị đầu tiên khi thay đổi năm học
-                                const firstSemester = dataLtcTheoGv.find(item => item.NIENKHOA === e.target.value).HOCKI;
-                                setSelectedSemester(firstSemester);
-                                // Đặt lại môn học về giá trị đầu tiên khi thay đổi học kì
-                                const firstSubject = dataLtcTheoGv.find(item => (item.NIENKHOA === e.target.value && item.HOCKI === firstSemester)).MAMH;
-                                setSelectedSubject(firstSubject);
-                            }}
+                            onChange={(e) => setSelectedYear(e.target.value)}
                         >
                             {nienKhoaList.map((year, index) => (
-                                <option  key={index} value={year}>{year}</option>
+                                <option key={index} value={year}>{year}</option>
                             ))}
                         </select>
                     </div>
@@ -122,9 +150,7 @@ export default function NhapDiem() {
                             className='select-nhapdiem'
                             id="semester"
                             value={selectedSemester}
-                            onChange={(e) => {
-                                setSelectedSemester(parseInt(e.target.value));
-                            }}
+                            onChange={(e) => setSelectedSemester(parseInt(e.target.value))}
                         >
                             {filteredHocKiList.map((semester, index) => (
                                 <option key={index} value={semester}>Học kì {semester}</option>
@@ -134,13 +160,26 @@ export default function NhapDiem() {
                     <div className='div-nhapdiem'>
                         <label className='label-nhapdiem' htmlFor="subject">Môn học: </label>
                         <select
-                        className='select-nhapdiem'
+                            className='select-nhapdiem'
                             id="subject"
                             value={selectedSubject}
                             onChange={(e) => setSelectedSubject(e.target.value)}
                         >
                             {filteredMonHocList.map((subject, index) => (
                                 <option key={index} value={subject.MAMH}>{subject.TENMH}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className='div-nhapdiem'>
+                        <label className='label-nhapdiem' htmlFor="group">Nhóm: </label>
+                        <select
+                            className='select-nhapdiem'
+                            id="group"
+                            value={selectedGroup}
+                            onChange={(e) => setSelectedGroup(parseInt(e.target.value))}
+                        >
+                            {filteredNhomList.map((group, index) => (
+                                <option key={index} value={group.NHOM}>{group.NHOM}</option>
                             ))}
                         </select>
                     </div>

@@ -55,8 +55,8 @@ function DangKyLTC() {
         () => {
             const fetchData = async () => {
                 const maSV = localStorage.getItem('username');
-                // console.log('maSV:', maSV);
-                // console.log('lop:', lop);
+                console.log('maSV:', maSV);
+                console.log('lop:', lop);
                 try {
                     if(lop!== "" && maSV){
                         const result = await getDSLTCDeDK(lop.trim(),maSV);
