@@ -79,7 +79,7 @@ export default function HocPhi() {
             if (res.status === 200) {
                 res.json().then(data => {
                     console.log(data.url);
-                    window.location.href = data.url;
+                    // window.location.href = data.url;
                 })
             }
         }).catch(error => {

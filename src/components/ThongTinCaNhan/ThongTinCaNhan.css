@@ -11,6 +11,7 @@
 .info {
     flex: 1;
     padding: 20px;
+    max-width: 80%;
 }
 
 .student-info {
@@ -58,6 +59,7 @@ h2 {
     justify-content: flex-end;
     align-items: center;
     padding: 20px;
+    width: 400px;
 }
 
 .student-image {
