@@ -9,8 +9,9 @@ import NavBarMenu from '../NavBarMenu/NavBarMenu.jsx'
 import { handleOpenDialog, handleCloseDialog, useForm } from './modalLTC.js';
 import Footer from '../../components/Footer/Footer';
 import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
+import { useNavigate } from 'react-router-dom';
 function LopTinChi() {
-
+    const navigate = useNavigate();
     const [khoaList, setKhoaList] = useState([]);
     const [selectedKhoa, setSelectedKhoa] = useState('');
     const [nienKhoaList, setNienKhoaList] = useState([]);
@@ -41,6 +42,9 @@ function LopTinChi() {
     const { values, handleChange, setFormValues, resetForm } = useForm(initialFormValues);
 
     useEffect(() => {
+        if(localStorage.getItem('role') === "SINHVIEN") {
+            navigate("/")
+        }
         const fetchMonHocList = async () => {
             try {
                 const data = await getDanhSachMonHoc();
@@ -313,7 +317,7 @@ function LopTinChi() {
         }));
     };
 
- 
+    
 
     return (
         <div>
@@ -456,12 +460,12 @@ function LopTinChi() {
                             <button type="button" className="SaveButton" id="saveLTC" onClick={handleSaveButtonClick}>Lưu</button>
                         </div>
                     </div>
-                    <div id="deleteDialog" class="modal-036">
-                    <div class="modal-content-036">
-                    <span class="close" id="closeDialogButton" onClick={() => handleCloseDialog('deleteDialog')}>&times;</span>
+                    <div id="deleteDialog" className="modal-036">
+                    <div className="modal-content-036">
+                    <span className="close" id="closeDialogButton" onClick={() => handleCloseDialog('deleteDialog')}>&times;</span>
                     <p className='titleModal'>Xóa Lớp tín chỉ</p>
 
-                    <input type="text" class="form-control-036" id="XoaLTC" value={`Bạn có muốn xóa lớp tín chỉ môn ${values.tenmh}, nhóm ${values.nhom} không?`}  readOnly='readOnly' ></input>
+                    <input type="text" className="form-control-036" id="XoaLTC" value={`Bạn có muốn xóa lớp tín chỉ môn ${values.tenmh}, nhóm ${values.nhom} không?`}  readOnly='readOnly' ></input>
                     <button type="button" className="SaveButton" id="deleteSVButton" onClick={AcceptDeleteButtonClick}>Đồng ý</button>
                 
                 </div>

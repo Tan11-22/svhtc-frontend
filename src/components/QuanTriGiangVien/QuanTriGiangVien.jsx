@@ -10,8 +10,9 @@ import NavBarMenu from '../NavBarMenu/NavBarMenu.jsx'
 import { handleOpenDialog, handleCloseDialog, previewImage ,useForm } from '../Form036/Modal/Modal.js';
 import Footer from '../../components/Footer/Footer';
 import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
+import { useNavigate } from 'react-router-dom';
 function QuanTriGiangVien() {
-  
+  const navigate = useNavigate();
   const [khoaList, setKhoaList] = useState([]);
   const [selectedKhoa, setSelectedKhoa] = useState('');
   const [GVList, setGVList] = useState([]);
@@ -34,6 +35,9 @@ function QuanTriGiangVien() {
   const { values, handleChange, setFormValues, resetForm } = useForm(initialFormValues);
 
   useEffect(() => {
+    if(localStorage.getItem('role') === "SINHVIEN") {
+      navigate("/")
+    }
     const fetchKhoaList = async () => {
       try {
         const data = await getDanhSachKhoa();

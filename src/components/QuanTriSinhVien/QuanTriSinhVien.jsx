@@ -10,8 +10,9 @@ import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
 import { handleOpenDialog, handleCloseDialog, previewImage ,useForm,formatDate } from '../Form036/Modal/Modal.js';
 import { getDanhSachLop ,getStudentsByClassId,addNewStudent,updateStudent,DeleteStudent,fetchStudentImage} from '../API036/apiThongTin.js';
 import Footer from '../../components/Footer/Footer';
+import { useNavigate } from 'react-router-dom';
 function QuanTriSinhVien() {
-  
+  const navigate = useNavigate();
     const [lopList, setLopList] = useState([]);
     const [selectedLop, setSelectedLop] = useState('');
     const [studentList, setStudentList] = useState([]);
@@ -33,7 +34,9 @@ function QuanTriSinhVien() {
       };
     const { values, handleChange, setFormValues, resetForm } = useForm(initialFormValues);
     useEffect(() => {
-        
+      if(localStorage.getItem('role') === "SINHVIEN") {
+        navigate("/")
+    }
         const fetchLopList = async () => {
             try {
                 const data = await getDanhSachLop();

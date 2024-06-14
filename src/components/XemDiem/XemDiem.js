@@ -4,12 +4,17 @@ import Header from '../Header/Header'
 import { useEffect, useState } from 'react';
 import  {menuItemsSV}  from '../../components/NavBarMenu/menu';
 import NavbarMenu from '../NavBarMenu/NavBarMenu';
+import { useNavigate } from 'react-router-dom';
 export default function XemDiem() {
+  const navigate = useNavigate();
   const [listDiem, setListDiem] = useState([]);
   const [thongKetDiem, setThongKeDiem] = useState([]);
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('username');
   useEffect(() => {
+    if(localStorage.getItem('role') === "GIANGVIEN") {
+      navigate("/")
+  }
     fetch(`api/thong-tin/sinh-vien/xem-diem?ma-sv=${username}`, {
       method: 'GET',
       headers: {
@@ -62,7 +67,7 @@ export default function XemDiem() {
     setThongKeDiem(listTmp);
   }
   console.log(thongKetDiem);
-
+ 
   return (
     <div className="grade-table-list">
       <Header />

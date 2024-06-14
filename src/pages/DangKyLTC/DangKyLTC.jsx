@@ -9,8 +9,10 @@ import Loading from '../../components/Loading/Loading';
 import NavbarMenu from '../../components/NavBarMenu/NavBarMenu';
 import  {menuItemsSV}  from '../../components/NavBarMenu/menu';
 import Footer from '../../components/Footer/Footer';
+import { useNavigate } from 'react-router-dom';
 
 function DangKyLTC() {
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [danhSachLop, setDanhSachLop] = useState([])
@@ -20,6 +22,9 @@ function DangKyLTC() {
     const [refresh, setRefresh] = useState(false)
     useEffect(
         () => {
+            if(localStorage.getItem('role') === "GIANGVIEN") {
+                navigate("/")
+            }
             const fetchData = async () => {
                 try {
                   const result = await getDanhSachThongTinLop();
@@ -61,6 +66,7 @@ function DangKyLTC() {
                     if(lop!== "" && maSV){
                         const result = await getDSLTCDeDK(lop.trim(),maSV);
                         setDanhSachLopDK(result.data)         
+                        console.log("Check danh sach da dang ky", result.data)
                     }     
                 } catch (error) {
                     console.log(error)
@@ -79,7 +85,8 @@ function DangKyLTC() {
                 try {
                     if(maSV){
                         const result = await getDSLTCDaDK(maSV);
-                        setDanhSachLopDaDK(result.data)         
+                        setDanhSachLopDaDK(result.data)   
+                        console.log("Check danh sach da dang ky", result.data)      
                     }     
                 } catch (error) {
                     console.log(error)
@@ -91,7 +98,7 @@ function DangKyLTC() {
         [refresh]
     )   
     const thaoTacDangKy = (maLTC,soSVToiDa) => {
-        console.log("check1")
+        // console.log("check1")
         const fetchData = async () => {
             const maSV = localStorage.getItem('username');
             try {
@@ -109,7 +116,7 @@ function DangKyLTC() {
         fetchData(); 
     }
     const thaoTacHuyDangKy = (maLTC) => {
-        console.log("check2")
+        // console.log("check2")
         const fetchData = async () => {
             const maSV = localStorage.getItem('username');
             try {
@@ -126,6 +133,7 @@ function DangKyLTC() {
         
         fetchData(); 
     }
+    
     if (loading) return <Loading/>;
     if (error) return <p>Error: {error.message}</p>;
   return (

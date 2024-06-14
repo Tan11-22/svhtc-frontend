@@ -17,10 +17,10 @@ export default function HomePage() {
         <div className="content-wrapper">
             <Header/>
             <NavBarMenu menuItems={menuItems}/>
-            <div class='content-1'>
-                <div class="ad-img-wrapper">
-                    <img class='responsive-img' src="https://portal.ptit.edu.vn/wp-content/uploads/2021/11/banner-web-triet-ly-giao-d%E1%BB%A5c.jpg" alt="Slide 2" />
-                    <img src="https://portal.ptit.edu.vn/wp-content/uploads/2022/08/baner_tuyendung.jpg" class="ad-img" alt='portal' style={{ paddingTop: '10px' }} />
+            <div className='content-1'>
+                <div className="ad-img-wrapper">
+                    <img className='responsive-img' src="https://portal.ptit.edu.vn/wp-content/uploads/2021/11/banner-web-triet-ly-giao-d%E1%BB%A5c.jpg" alt="Slide 2" />
+                    <img src="https://portal.ptit.edu.vn/wp-content/uploads/2022/08/baner_tuyendung.jpg" className="ad-img" alt='portal' style={{ paddingTop: '10px' }} />
                 </div>
             </div>
             <div className='content-2'>

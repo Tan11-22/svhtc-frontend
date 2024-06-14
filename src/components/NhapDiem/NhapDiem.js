@@ -4,8 +4,9 @@ import Header from '../Header/Header';
 import StudentTable from './StudentTable';
 import { menuItemsGV } from '../../components/NavBarMenu/menu';
 import NavbarMenu from '../NavBarMenu/NavBarMenu';
-
+import { useNavigate } from 'react-router-dom';
 export default function NhapDiem() {
+    const navigate = useNavigate();
     const [dataLtcTheoGv, setDataLtcTheoGv] = useState([]);
     const [selectedYear, setSelectedYear] = useState('');
     const [selectedSemester, setSelectedSemester] = useState();
@@ -22,6 +23,10 @@ export default function NhapDiem() {
     const username = localStorage.getItem('username');
 
     useEffect(() => {
+        if(localStorage.getItem('role') === "SINHVIEN") {
+            navigate("/")
+        }
+    
         fetch(`api/thong-tin/giang-vien/danh-sach-ltc?ma-gv=${username}`, {
             method: 'GET',
             headers: {
@@ -125,7 +130,7 @@ export default function NhapDiem() {
             )
         );
     };
-
+   
     return (
         <div>
             <Header />

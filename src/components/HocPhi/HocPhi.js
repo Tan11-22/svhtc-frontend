@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import logo from '../Logo/logoptithcm.png'
 import './HocPhi.css'
+import { useNavigate } from 'react-router-dom';
 export default function HocPhi() {
+    const navigate = useNavigate();
     // console.log("abc");
     const [maSv, setMaSv] = useState('');
     const [maXacNhan, setMaXacNhan] = useState('');
@@ -15,6 +17,9 @@ export default function HocPhi() {
     const canvasRef = useRef(null);
 
     useEffect(() => {
+        if(localStorage.getItem('role') === "GIANGVIEN") {
+            navigate("/")
+        }
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         initializeCaptcha(ctx);
@@ -79,7 +84,7 @@ export default function HocPhi() {
             if (res.status === 200) {
                 res.json().then(data => {
                     console.log(data.url);
-                    // window.location.href = data.url;
+                    window.location.href = data.url;
                 })
             }
         }).catch(error => {
@@ -144,7 +149,7 @@ export default function HocPhi() {
                 console.error('Lỗi khi gọi API:', error);
             });
     }
-
+   
 
     return (
         <div className="content-wrapper-hocphi">
