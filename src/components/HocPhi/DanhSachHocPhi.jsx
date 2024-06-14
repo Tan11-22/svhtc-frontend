@@ -6,10 +6,14 @@ import NavbarMenu from '../NavBarMenu/NavBarMenu.jsx';
 import Header from '../Header/Header.jsx';
 import  {menuItemsSV}  from '../../components/NavBarMenu/menu';
 import Footer from '../../components/Footer/Footer';
+import { useNavigate } from 'react-router-dom';
 function DanhSachHocPhi() {
-   
+    const navigate = useNavigate();
     const [hpList, setHocPhiList] = useState([]);
     useEffect(() => {
+        if(localStorage.getItem('role') === "GIANGVIEN") {
+            navigate("/")
+        }
         const fetchHPList = async () => {
             try {
                 const data = await getHocPhiSV(localStorage.getItem("username"));
@@ -24,6 +28,7 @@ function DanhSachHocPhi() {
     const totalHocPhiChuaGiam = hpList.reduce((total, hp) => total + hp.sotien, 0);
     const totalDaThu = hpList.reduce((total, hp) => total + hp.dathu, 0);
     const totalConNo = hpList.reduce((total, hp) => total + hp.conno, 0);
+    
   return (
     <div>
           <Header></Header>

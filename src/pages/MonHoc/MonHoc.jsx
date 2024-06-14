@@ -6,13 +6,23 @@ import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
 import CardLeft from '../../components/CardLeft/CardLeft';
 import NavbarMenu from '../../components/NavBarMenu/NavBarMenu';
 import Footer from '../../components/Footer/Footer';
+import { useNavigate } from 'react-router-dom';
 function MonHoc() {
+  const navigate = useNavigate();
   // console.log(localStorage.getItem("token"))
+  useEffect(
+    ()=>{
+      if(localStorage.getItem('role') === "SINHVIEN") {
+        navigate("/")
+    }
+    }, []
+  )
   const data = [
     { name: 'Môn học', image: "mon-hoc",act:1 },
     { name: 'Lớp học', image: "lop-hoc", act:0 },
     // Thêm các đối tượng khác tại đây
   ];
+  
   return (
     <div>
       <Header/>

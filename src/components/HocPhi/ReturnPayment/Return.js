@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react';
 import './Return.css';
-
+import { useNavigate } from 'react-router-dom';
 export default function Return() {
+    const navigate = useNavigate();
     // State để lưu trữ giá trị từ URL
     const [urlParams, setUrlParams] = useState(null);
     const token = localStorage.getItem('token');
 
     useEffect(() => {
+        if(localStorage.getItem('role') === "GIANGVIEN") {
+            navigate("/")
+        }
         // Lấy URL hiện tại khi component được render lần đầu tiên
         const params = new URLSearchParams(window.location.search);
         setUrlParams(params);
@@ -63,6 +67,7 @@ export default function Return() {
         window.location.href = "/";
     }
     console.log("render");
+    
     return (
         <div>
             <div className='content-return-title'>

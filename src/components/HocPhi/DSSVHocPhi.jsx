@@ -7,12 +7,17 @@ import NavbarMenu from '../NavBarMenu/NavBarMenu.jsx';
 import Header from '../Header/Header.jsx';
 import Footer from '../../components/Footer/Footer';
 import  {menuItemsGV}  from '../../components/NavBarMenu/menu';
+import { useNavigate } from 'react-router-dom';
 function XemHocPhi() {
+    const navigate = useNavigate();
     const [nienKhoaList, setNienKhoaList] = useState([]);
     const [selectedNienKhoa, setSelectedNienKhoa] = useState('');
     const [selectedHocKi, setSelectedHocKi] = useState('');
     const [hpList, setHocPhiList] = useState([]);
     useEffect(() => {
+        if(localStorage.getItem('role') === "SINHVIEN") {
+            navigate("/")
+        }
         const fetchNienKhoaList = async () => {
             try {
                 const data = await getDanhSachNienKhoa();
@@ -55,6 +60,7 @@ function XemHocPhi() {
             setSelectedHocKi('1');
         }
     }, [selectedNienKhoa, selectedHocKi]);
+    
   return (
     <div>
         <Header></Header>

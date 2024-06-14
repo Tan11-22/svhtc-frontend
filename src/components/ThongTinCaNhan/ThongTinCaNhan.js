@@ -3,8 +3,9 @@ import Header from '../Header/Header'
 import { useEffect, useState } from 'react'
 import NavbarMenu from '../NavBarMenu/NavBarMenu';
 import { menuItemsSV } from '../../components/NavBarMenu/menu';
-
+import { useNavigate } from 'react-router-dom';
 export default function ThongTinCaNhan() {
+    const navigate = useNavigate();
     console.log("abccccc");
     const [informationStudent, setInformationStudent] = useState();
     const [srcImg, setSrcImg] = useState();
@@ -12,6 +13,9 @@ export default function ThongTinCaNhan() {
     const username = localStorage.getItem('username');
 
     useEffect(() => {
+        if(localStorage.getItem('role') === "GIANGVIEN") {
+            navigate("/")
+        }
         fetch(`api/thong-tin/sinh-vien/thong-tin-ca-nhan?ma-sv=${username}`, {
             method: 'GET',
             headers: {
@@ -49,6 +53,7 @@ export default function ThongTinCaNhan() {
 
 
     }, [token, username])
+    console.log("Check role ",localStorage.getItem('role'))
 
     return (
         <div>

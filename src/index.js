@@ -28,20 +28,25 @@ export default function SVHTC() {
       <Routes>
         <Route path="/" >
         <Route index element={<HomePage />} />
-          <Route path="hoc-phi" element={<DanhSachHocPhi />} />
+        {/* Sinh vien  */}
+          <Route path="hoc-phi" element={<DanhSachHocPhi />} /> 
           <Route path="xem-diem" element={<XemDiem />} />
           <Route path="return-payment" element={<Return />} />
           <Route path="thong-tin-ca-nhan" element={<ThongTinCaNhan />} />
+          <Route path="dang-ky-lop" element={<DangKyLTC/>} />
+          <Route path="dong-hoc-phi" element={<HocPhi/>} />
+          
+          {/* giangvien  */}
           <Route path="nhap-diem" element={<NhapDiem />} />
           <Route path="login" element={<Login/>} />
           <Route path="mon-hoc" element={<MonHoc/>} />
           <Route path="lop-hoc" element={<Lop/>} />
-          <Route path="dang-ky-lop" element={<DangKyLTC/>} />
           <Route path="sinh-vien" element={<QuanTriSinhVien/>} />
           <Route path="giang-vien" element={<QuanTriGiangVien/>} />
           <Route path="lop-tin-chi" element={<LopTinChi/>} />
-          <Route path="dong-hoc-phi" element={<HocPhi/>} />
           <Route path="dssv-hoc-phi" element={<DSSVHocPhi/>} />
+       
+         
         </Route>
       </Routes>
     </BrowserRouter>
